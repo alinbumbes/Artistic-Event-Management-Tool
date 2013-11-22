@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artistic-Event-Management-Tool", "Artistic-Event-Management-Tool\Artistic-Event-Management-Tool.csproj", "{E8A95235-AFF9-4772-8C06-E1ADB7ADEA16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{B5E7FDA2-AB26-4730-BCF1-C0DAAD6E9011}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E8A95235-AFF9-4772-8C06-E1ADB7ADEA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8A95235-AFF9-4772-8C06-E1ADB7ADEA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8A95235-AFF9-4772-8C06-E1ADB7ADEA16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E7FDA2-AB26-4730-BCF1-C0DAAD6E9011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E7FDA2-AB26-4730-BCF1-C0DAAD6E9011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E7FDA2-AB26-4730-BCF1-C0DAAD6E9011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E7FDA2-AB26-4730-BCF1-C0DAAD6E9011}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
