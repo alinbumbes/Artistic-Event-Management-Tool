@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Core.Infrastructure;
 
 namespace Artistic_Event_Management_Tool
 {
@@ -20,6 +21,8 @@ namespace Artistic_Event_Management_Tool
             
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.Configure();
            
         }
     }
