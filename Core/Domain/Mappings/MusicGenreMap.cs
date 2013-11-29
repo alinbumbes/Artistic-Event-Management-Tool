@@ -14,6 +14,8 @@ namespace Core.Domain.Mappings
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name).Not.Nullable();
             HasMany(x => x.Children);
+
+            References(x => x.Parent);
         }
     }
 }

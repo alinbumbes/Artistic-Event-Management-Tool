@@ -10,17 +10,17 @@ namespace Core.Domain
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public List<PricePerDuration> Prices { get; set; }
+        public decimal PricePerHour { get; set; }
 
         public EventType()
         {
             
         }
 
-        public EventType(string name, List<PricePerDuration> prices)
+        public EventType(string name, decimal pricePerHour)
         {
             Name = name;
-            Prices = prices;
+            PricePerHour = pricePerHour;
         }
     }
 }

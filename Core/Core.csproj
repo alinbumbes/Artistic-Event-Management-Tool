@@ -36,6 +36,9 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.0.0.1\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -54,13 +57,12 @@
   <ItemGroup>
     <Compile Include="Domain\ArtisticEvent.cs" />
     <Compile Include="Domain\EventType.cs" />
-    <Compile Include="Domain\Location.cs" />
     <Compile Include="Domain\Mappings\MusicGenreMap.cs" />
     <Compile Include="Domain\Mappings\UserMap.cs" />
     <Compile Include="Domain\MusicGenre.cs" />
-    <Compile Include="Domain\PricePerDuration.cs" />
     <Compile Include="Domain\Song.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\Validation\UserValidator.cs" />
     <Compile Include="Infrastructure\Cryptography.cs" />
     <Compile Include="Infrastructure\Database.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

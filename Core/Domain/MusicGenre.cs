@@ -11,7 +11,8 @@ namespace Core.Domain
     {
         public virtual long Id { get; set; }
         public virtual string Name { get; set; }
-        
+        public virtual MusicGenre Parent { get; set; }
+
         private ICollection<MusicGenre> _children;
         public virtual ICollection<MusicGenre> Children 
         {

@@ -1,8 +1,11 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using Core.Domain;
 using Core.Domain.Mappings;
+using Core.Domain.Validation;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentValidation.Results;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 
@@ -67,9 +70,13 @@ namespace Core.Infrastructure
                     {
                         Name = "Alin Bumbes",
                         Email = "admin@alin.com",
-                        Password = Cryptography.GetHash("admin"),
+                        //Cryptography.GetHash("admin"),
                         Type = UserType.Admin
                     };
+
+                    var validator = new UserValidator();
+                    ValidationResult results = validator.Validate(adminUser);
+                    var xx = results.IsValid;
                     session.Save(adminUser);
 
                     var user = new User
@@ -95,6 +102,14 @@ namespace Core.Infrastructure
                     muzicapopulara.Children.Add(hora);
                     muzicapopulara.Children.Add(doina);
                     session.Save(muzicapopulara);
+                    
+                    sarba.Parent = muzicapopulara;
+                    session.Save(sarba);
+                    hora.Parent = muzicapopulara;
+                    session.Save(hora);
+                    doina.Parent = muzicapopulara;
+                    session.Save(doina);
+                    
 
                     var muzicaUsoara = new MusicGenre("Muzica usoara");
                         var blues = new MusicGenre("Blues");
@@ -111,6 +126,24 @@ namespace Core.Infrastructure
                     muzicaUsoara.Children.Add(pop);
                     muzicaUsoara.Children.Add(hiphop);
                     session.Save(muzicaUsoara);
+
+                    blues.Parent = muzicaUsoara;
+                    session.Save(blues);
+                    rockAndRoll.Parent = muzicaUsoara;
+                    session.Save(rockAndRoll);
+                    pop.Parent = muzicaUsoara;
+                    session.Save(pop);
+                    hiphop.Parent = muzicaUsoara;
+                    session.Save(hiphop);
+                    
+   
+                    //EVENT TYPES
+                    var eventNunta = new EventType("Nunta", 800);
+                    session.Save(eventNunta);
+                    var eventBotez = new EventType("Botez", 500);
+                    session.Save(eventBotez);
+                    var eventConcertLive = new EventType("Concert live", 15000);
+                    session.Save(eventConcertLive);
 
                     tx.Commit();
                 }

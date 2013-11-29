@@ -11,10 +11,10 @@ namespace Core.Domain
     {
         public long Id { get; set; }
         public EventType Type { get; set; }
-        public DateTime Date { get; set; }
-        public TimeSpan Duration { get; set; }
-        public Location Location { get; set; }
         public User Requester { get; set; }
+        public DateTime Date { get; set; }
+        public decimal DurationInHours { get; set; }
+        public string EventLocation { get; set; }
         public decimal Price { get; set; } 
     }
     
