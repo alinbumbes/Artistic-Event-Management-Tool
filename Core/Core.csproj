@@ -62,6 +62,7 @@
     <Compile Include="Domain\MusicGenre.cs" />
     <Compile Include="Domain\Song.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\Validation\SongValidator.cs" />
     <Compile Include="Domain\Validation\UserValidator.cs" />
     <Compile Include="Infrastructure\Cryptography.cs" />
     <Compile Include="Infrastructure\Database.cs" />
