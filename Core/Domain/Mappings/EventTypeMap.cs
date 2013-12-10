@@ -7,14 +7,13 @@ using FluentNHibernate.Mapping;
 
 namespace Core.Domain.Mappings
 {
-    public class MusicGenreMap : ClassMap<MusicGenre>
+    public class EventTypeMap : ClassMap<EventType>
     {
-        public MusicGenreMap()
+        public EventTypeMap()
         {
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name).Not.Nullable();
-           
-            References(x => x.Parent);
+            Map(x => x.PricePerHour);
         }
     }
 }

@@ -4,23 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Core.Domain;
+using Core.Domain.Validation;
 using NHibernate;
 using NHibernate.Linq;
 
-namespace Artistic_Event_Management_Tool.Controllers
+namespace Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ISession _session;
+        public HomeController(ISession session, ValidatorFactory validatorFactory)
+            : base(session, validatorFactory)
+        { }
 
-        public HomeController(ISession session)
-        {
-            _session = session;
-        }
         public ActionResult Index()
         {
-            var musics = _session.Query<MusicGenre>().ToList();
-
             return View();
         }
 

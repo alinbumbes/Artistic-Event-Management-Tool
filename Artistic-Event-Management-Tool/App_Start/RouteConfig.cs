@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Artistic_Event_Management_Tool
+namespace Web
 {
     public class RouteConfig
     {

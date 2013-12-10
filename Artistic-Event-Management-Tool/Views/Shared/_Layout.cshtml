@@ -4,39 +4,63 @@
         <meta charset="utf-8" />
         <title>@ViewBag.Title - Artistic Event Management Tool</title>
         <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
+
+        <link href="~/Content/bootstrap/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+        <link href="~/Content/Site.css" rel="stylesheet" />
     </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("Alin Bumbes Band - Artistic Events Management", "Index", "Home")</p>
-                </div>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">@Html.ActionLink("Alin Bumbes Band - Artistic Events Management", "Index", "Home")</p>
             </div>
-            <br />
-            <br />
-            <div class="content-wrapper">
-                <nav class="float-left">
-                    <ul id="menu">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <div id="body">
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
         </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - Alin Bumbes Band - Artistic Events Management</p>
-                </div>
+        <br />
+        <br />
+        <div class="content-wrapper">
+            <nav class="float-left">
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="body">
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - Alin Bumbes Band - Artistic Events Management</p>
             </div>
-        </footer>
-        @Scripts.Render("~/bundles/dependencies")
-        @RenderSection("scripts", required: false)
-    </body>
+        </div>
+    </footer>
+
+
+    @* *********** URL FORMATER ************ *@
+    <script type="text/javascript">
+        urlFormater = function (url) {
+            var path = '@(Request.ApplicationPath)';
+
+            if (path != '/')
+                path = path + '/';
+
+            return path + url;
+        };
+    </script>
+
+    <script src="~/Scripts/Dependencies/jquery.min.js"></script>
+    <script src="~/Scripts/Dependencies/knockout.min.js"></script>
+
+    <script src="~/Scripts/_appConfig.js"></script>
+    <script src="~/Scripts/Shared/server.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+
 </html>

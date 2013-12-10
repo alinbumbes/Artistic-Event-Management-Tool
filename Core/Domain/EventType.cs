@@ -8,9 +8,9 @@ namespace Core.Domain
 {
     public class EventType
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public decimal PricePerHour { get; set; }
+        public virtual long Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual decimal PricePerHour { get; set; }
 
         public EventType()
         {

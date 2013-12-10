@@ -1,11 +1,12 @@
+using Core.Domain.Validation;
 using Core.Infrastructure;
 using NHibernate;
 using Ninject.Activation;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(Artistic_Event_Management_Tool.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Artistic_Event_Management_Tool.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(Web.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Web.App_Start.NinjectWebCommon), "Stop")]
 
-namespace Artistic_Event_Management_Tool.App_Start
+namespace Web.App_Start
 {
     using System;
     using System.Web;
@@ -58,6 +59,9 @@ namespace Artistic_Event_Management_Tool.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<ISessionFactory>().ToMethod(x => Database.BuildSessionFactory()).InSingletonScope();
+            kernel.Bind<ValidatorFactory>().ToConstructor(x => new ValidatorFactory()).InSingletonScope();
+            
+
             kernel.Bind<ISession>().ToProvider(new SessionProvider()).InRequestScope();
         }
 

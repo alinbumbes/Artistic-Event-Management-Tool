@@ -7,14 +7,16 @@ using FluentNHibernate.Mapping;
 
 namespace Core.Domain.Mappings
 {
-    public class MusicGenreMap : ClassMap<MusicGenre>
+    public class SongMap : ClassMap<Song>
     {
-        public MusicGenreMap()
+        public SongMap()
         {
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name).Not.Nullable();
-           
-            References(x => x.Parent);
+            Map(x => x.Band);
+            Map(x => x.Duration);
+
+            References(x => x.MusicGenre);
         }
     }
 }

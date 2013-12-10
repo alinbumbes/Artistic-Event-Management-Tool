@@ -16,9 +16,11 @@ namespace Core.Domain.Validation
                 .NotNull()
                 .NotEmpty()
                 .Must(PasswordHasValidLength);
+
             RuleFor(user => user.Password)
                 .NotNull()
                 .NotEmpty();
+
             RuleFor(user => user.Email)
                 .NotNull()
                 .NotEmpty();

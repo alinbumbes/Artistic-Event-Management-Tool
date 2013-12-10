@@ -70,7 +70,7 @@ namespace Core.Infrastructure
                     {
                         Name = "Alin Bumbes",
                         Email = "admin@alin.com",
-                        //Cryptography.GetHash("admin"),
+                        Password = Cryptography.GetHash("admin"),
                         Type = UserType.Admin
                     };
 
@@ -90,53 +90,40 @@ namespace Core.Infrastructure
 
                     //MUSIC GENRES
                     var muzicapopulara = new MusicGenre("Muzica populara");
-
-                        var sarba = new MusicGenre("Sarbe");
-                        session.Save(sarba);
-                        var hora = new MusicGenre("Hore");
-                        session.Save(hora);
-                        var doina = new MusicGenre("Doine");
-                        session.Save(doina);
-
-                    muzicapopulara.Children.Add(sarba);
-                    muzicapopulara.Children.Add(hora);
-                    muzicapopulara.Children.Add(doina);
                     session.Save(muzicapopulara);
-                    
+
+                    var sarba = new MusicGenre("Sarbe");
                     sarba.Parent = muzicapopulara;
                     session.Save(sarba);
+
+                    var hora = new MusicGenre("Hore");
                     hora.Parent = muzicapopulara;
                     session.Save(hora);
+
+                    var doina = new MusicGenre("Doine");
                     doina.Parent = muzicapopulara;
                     session.Save(doina);
                     
-
                     var muzicaUsoara = new MusicGenre("Muzica usoara");
-                        var blues = new MusicGenre("Blues");
-                        session.Save(blues);
-                        var rockAndRoll = new MusicGenre("Rock and roll");
-                        session.Save(rockAndRoll);
-                        var pop = new MusicGenre("Pop");
-                        session.Save(pop);
-                        var hiphop = new MusicGenre("Hip hop");
-                        session.Save(hiphop);
-
-                    muzicaUsoara.Children.Add(blues);
-                    muzicaUsoara.Children.Add(rockAndRoll);
-                    muzicaUsoara.Children.Add(pop);
-                    muzicaUsoara.Children.Add(hiphop);
                     session.Save(muzicaUsoara);
 
+                    var blues = new MusicGenre("Blues");
                     blues.Parent = muzicaUsoara;
                     session.Save(blues);
+
+                    var rockAndRoll = new MusicGenre("Rock and roll");
                     rockAndRoll.Parent = muzicaUsoara;
                     session.Save(rockAndRoll);
+
+                    var pop = new MusicGenre("Pop");
                     pop.Parent = muzicaUsoara;
                     session.Save(pop);
+
+                    var hiphop = new MusicGenre("Hip hop");
                     hiphop.Parent = muzicaUsoara;
                     session.Save(hiphop);
-                    
-   
+
+
                     //EVENT TYPES
                     var eventNunta = new EventType("Nunta", 800);
                     session.Save(eventNunta);

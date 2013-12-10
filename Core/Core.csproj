@@ -57,16 +57,28 @@
   <ItemGroup>
     <Compile Include="Domain\ArtisticEvent.cs" />
     <Compile Include="Domain\EventType.cs" />
+    <Compile Include="Domain\Mappings\ArtisticEventMap.cs" />
+    <Compile Include="Domain\Mappings\EventTypeMap.cs" />
     <Compile Include="Domain\Mappings\MusicGenreMap.cs" />
+    <Compile Include="Domain\Mappings\SongMap.cs" />
     <Compile Include="Domain\Mappings\UserMap.cs" />
     <Compile Include="Domain\MusicGenre.cs" />
     <Compile Include="Domain\Song.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\Validation\ArtisticEventValidator.cs" />
+    <Compile Include="Domain\Validation\DefaultValidator.cs" />
+    <Compile Include="Domain\Validation\EventTypeValidator.cs" />
+    <Compile Include="Domain\Validation\MusicGenreValidator.cs" />
     <Compile Include="Domain\Validation\SongValidator.cs" />
     <Compile Include="Domain\Validation\UserValidator.cs" />
+    <Compile Include="Domain\Validation\ValidatorFactory.cs" />
+    <Compile Include="AllClasses.cs" />
     <Compile Include="Infrastructure\Cryptography.cs" />
     <Compile Include="Infrastructure\Database.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuerySystem\DynamicQueryable.cs" />
+    <Compile Include="QuerySystem\NHibernateLinqReflections.cs" />
+    <Compile Include="QuerySystem\QuerySystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

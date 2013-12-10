@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artistic-Event-Management-Tool", "Artistic-Event-Management-Tool\Artistic-Event-Management-Tool.csproj", "{E8A95235-AFF9-4772-8C06-E1ADB7ADEA16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Artistic-Event-Management-Tool\Web.csproj", "{E8A95235-AFF9-4772-8C06-E1ADB7ADEA16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{B5E7FDA2-AB26-4730-BCF1-C0DAAD6E9011}"
 EndProject

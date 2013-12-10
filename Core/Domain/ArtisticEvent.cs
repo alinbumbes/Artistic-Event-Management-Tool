@@ -7,15 +7,15 @@ using Microsoft.Win32;
 
 namespace Core.Domain
 {
-    public class ArtisticEvent
+    public class ArtisticEvent 
     {
-        public long Id { get; set; }
-        public EventType Type { get; set; }
-        public User Requester { get; set; }
-        public DateTime Date { get; set; }
-        public decimal DurationInHours { get; set; }
-        public string EventLocation { get; set; }
-        public decimal Price { get; set; } 
+        public virtual long Id { get; set; }
+        public virtual EventType Type { get; set; }
+        public virtual User Requester { get; set; }
+        public virtual DateTime Date { get; set; }
+        public virtual decimal DurationInHours { get; set; }
+        public virtual string EventLocation { get; set; }
+        public virtual decimal Price { get; set; } 
     }
     
 }

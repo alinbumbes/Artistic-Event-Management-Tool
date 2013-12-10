@@ -8,11 +8,14 @@ namespace Core.Domain
 {
     public class Song
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public string Band { get; set; }
-        public TimeSpan Duration { get; set; }
-        public MusicGenre MusicGenre { get; set; }
+        public virtual long Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Band { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        public virtual MusicGenre MusicGenre { get; set; }
+
+        public Song()
+        {}
 
         public Song(string name, string band)
         {

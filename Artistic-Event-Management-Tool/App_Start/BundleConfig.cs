@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Artistic_Event_Management_Tool
+namespace Web
 {
     public class BundleConfig
     {
@@ -9,10 +9,13 @@ namespace Artistic_Event_Management_Tool
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/dependencies").Include(
-                        "~/Scripts/jquery-{version}.min.js",
-                        "~/Scripts/knockout-{version}.min.js"));
+                        "~/Scripts/Dependencies/jquery.min.js",
+                        "~/Scripts/Dependencies/knockout.min.js"));
+
             
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/bootstrap/bootstrap.css",
+                "~/Content/site.css"));
 
            
         }
