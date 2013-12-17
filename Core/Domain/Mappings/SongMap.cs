@@ -13,8 +13,8 @@ namespace Core.Domain.Mappings
         {
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name).Not.Nullable();
-            Map(x => x.Band);
-            Map(x => x.Duration);
+            Map(x => x.Author);
+            Map(x => x.DurationMin);
 
             References(x => x.MusicGenre);
         }

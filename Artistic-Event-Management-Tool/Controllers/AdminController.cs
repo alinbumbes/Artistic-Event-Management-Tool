@@ -40,5 +40,14 @@ namespace Web.Controllers
             return Json(allEntitiesOfRequestedTypes, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public new JsonResult SaveOrOpdate(string type, string objectStringified)
+        {
+            return Json(base.SaveOrOpdate(type, objectStringified), JsonRequestBehavior.DenyGet);
+        }
+
+        
+
+
     }
 }

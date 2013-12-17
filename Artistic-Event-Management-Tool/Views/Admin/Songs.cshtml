@@ -1,8 +1,47 @@
 ﻿@section scripts{
     @Scripts.Render("~/Scripts/Admin/songsViewModel.js")
 }
+
 @Html.Partial("_AdminNav")
 <div>
-    Songs
+    <div>Songs</div>
 
+    <a class='btn btn-info btn-large' title="Add new" data-bind="click:addNewSong">AddNew</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Duration in minutes</th>
+                <th>MusicGenre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: songs">
+            <tr>
+                <td data-bind="text: Id"></td>
+                <td data-bind="text: Name"></td>
+                <td data-bind="text: Author"></td>
+                <td data-bind="text: DurationMin"></td>
+                <td data-bind="text: MusicGenre.Name"></td>
+                <td><a class='btn btn-info btn-large' title="Edit" data-bind="click:$parent.editSong">Edit</a></td>
+                <td><a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.deleteSong">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="songEditPanel" title="Song details">
+    <label>Name</label>
+    <input data-bind="value:song.Name" />
+    <label>Author</label>
+    <input data-bind="value:song.Author" />
+    <label>Duration in minutes</label>
+    <input data-bind="value:song.DurationMin" />
+    <label>MusicGenre</label>
+    <select data-bind="options: musicGenres,
+                       optionsText: 'Name',
+                       value: song.MusicGenre,
+                       optionscaption: 'Choose music genre...' "></select>
 </div>

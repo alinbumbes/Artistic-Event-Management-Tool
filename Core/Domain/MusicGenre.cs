@@ -17,10 +17,11 @@ namespace Core.Domain
         {
             
         }
-        
-        public MusicGenre(string name, List<MusicGenre> children=null)
+
+        public MusicGenre(string name, MusicGenre parent = null)
         {
             Name = name;
+            Parent = parent;
         }
     }
 }

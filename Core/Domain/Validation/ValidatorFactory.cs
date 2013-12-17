@@ -11,20 +11,18 @@ namespace Core.Domain.Validation
     public class ValidatorFactory
     {
         private const string ValidatorNameToken = "Validator";
-        private readonly Dictionary<Type, IValidator> _validationDictionary = new Dictionary<Type, IValidator>();
+        private readonly Dictionary<string, IValidator> _validationDictionary = new Dictionary<string, IValidator>();
         public ValidatorFactory()
         {}
 
-        public IValidator GetValidator<T>()
+        public IValidator GetValidator(string type)
         {
-            var type = typeof (T);
-
             if (!_validationDictionary.ContainsKey(type))
             {
-                var validatorClassName = type.Name + ValidatorNameToken;
-                if (AllClasses.NameTypeMap.ContainsKey(validatorClassName))
+                var validatorClassName = type + ValidatorNameToken;
+                if (AllCoreClasses.NameTypeMap.ContainsKey(validatorClassName))
                 {
-                    _validationDictionary.Add(type, (IValidator)Activator.CreateInstance(AllClasses.NameTypeMap[validatorClassName]));
+                    _validationDictionary.Add(type, (IValidator)Activator.CreateInstance(AllCoreClasses.NameTypeMap[validatorClassName]));
                 }
                 else
                 {

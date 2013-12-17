@@ -10,24 +10,24 @@ namespace Core.Domain
     {
         public virtual long Id { get; set; }
         public virtual string Name { get; set; }
-        public virtual string Band { get; set; }
-        public virtual TimeSpan Duration { get; set; }
+        public virtual string Author { get; set; }
+        public virtual double DurationMin { get; set; }
         public virtual MusicGenre MusicGenre { get; set; }
 
         public Song()
         {}
 
-        public Song(string name, string band)
+        public Song(string name, string author)
         {
             Name = name;
-            Band = band;
+            Author = author;
         }
 
-        public Song(string name, string band, TimeSpan duration, MusicGenre musicGenre)
+        public Song(string name, string author, double durationMin, MusicGenre musicGenre)
         {
             Name = name;
-            Band = band;
-            Duration = duration;
+            Author = author;
+            DurationMin = durationMin;
             MusicGenre = musicGenre;
         }
     }

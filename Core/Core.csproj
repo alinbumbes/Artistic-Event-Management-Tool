@@ -72,7 +72,7 @@
     <Compile Include="Domain\Validation\SongValidator.cs" />
     <Compile Include="Domain\Validation\UserValidator.cs" />
     <Compile Include="Domain\Validation\ValidatorFactory.cs" />
-    <Compile Include="AllClasses.cs" />
+    <Compile Include="AllCoreClasses.cs" />
     <Compile Include="Infrastructure\Cryptography.cs" />
     <Compile Include="Infrastructure\Database.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

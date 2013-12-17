@@ -7,6 +7,8 @@
 
         <link href="~/Content/bootstrap/bootstrap.css" rel="stylesheet" />
         <link href="~/Content/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+        <link href="~/Content/toastr/toastr.css" rel="stylesheet" />
+        <link href="~/Content/jqueryui/jquery-ui.css" rel="stylesheet" />
         <link href="~/Content/Site.css" rel="stylesheet" />
     </head>
 <body>
@@ -55,9 +57,14 @@
     </script>
 
     <script src="~/Scripts/Dependencies/jquery.min.js"></script>
+    <script src="~/Scripts/Dependencies/jquery-ui.js"></script>
+    <script src="~/Scripts/Dependencies/toastr.js"></script>
     <script src="~/Scripts/Dependencies/knockout.min.js"></script>
+    <script src="~/Scripts/Dependencies/knockout.validation.js"></script>
+    <script src="~/Scripts/Dependencies/sugar.js"></script>
 
     <script src="~/Scripts/_appConfig.js"></script>
+    <script src="~/Scripts/Shared/constants.js"></script>
     <script src="~/Scripts/Shared/server.js"></script>
 
     @RenderSection("scripts", required: false)

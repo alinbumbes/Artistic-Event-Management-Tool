@@ -1,4 +1,7 @@
-﻿appConfig = {};
+﻿ko.validation.init({ grouping: { deep: true, observable: false } });
 
+appConfig = {};
 
-appConfig.getAllEntitiesOfTypesUrl = urlFormater("Admin/GetAll");
+//ADMIN SECTION
+appConfig.adminGetAllEntitiesOfTypesUrl = urlFormater("Admin/GetAll");
+appConfig.adminSaveOrOpdate = urlFormater("Admin/SaveOrOpdate");

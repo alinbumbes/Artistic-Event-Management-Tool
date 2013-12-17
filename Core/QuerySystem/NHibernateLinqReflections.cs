@@ -37,7 +37,7 @@ namespace Data.QuerySystem
 
         public static IQueryable<object> InvokeQuery(this ISession session, string type)
         {
-            var entityType = AllClasses.NameTypeMap[type];
+            var entityType = AllCoreClasses.NameTypeMap[type];
             MethodInfo genericQuery = QueryExtMeth.MakeGenericMethod(entityType);
             object[] parameters = { session };
 
