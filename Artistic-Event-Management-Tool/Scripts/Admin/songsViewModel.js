@@ -63,6 +63,11 @@ Admin.SongsViewModel = function() {
     self.deleteSong = function (song) {
         var x = song;
     };
+
+    self.sortBy = function(propertyName) {
+        var s = 4;
+    };
+
 };
 
 //initializer
@@ -156,9 +161,6 @@ Admin.SongsViewModel = function() {
 
         toastr.error(errorText);
     });
-
-
-    
-   
+      
 })();
 

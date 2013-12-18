@@ -8,7 +8,7 @@ namespace Core.Domain
 {
     public class User
     {
-        public virtual long Id { get; set; }
+        public virtual long? Id { get; set; }
         public virtual UserType Type { get; set; }
         public virtual string Name { get; set; }
         public virtual string Email { get; set; }

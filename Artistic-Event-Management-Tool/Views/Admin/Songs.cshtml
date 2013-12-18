@@ -11,11 +11,11 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Author</th>
-                <th>Duration in minutes</th>
-                <th>MusicGenre</th>
-                <th>Actions</th>
+                <th><a class='btn btn-info' title="Name" data-bind="click:function () {sortBy('Name')}">Name</a></th>
+                <th><a class='btn btn-info' title="Author" data-bind="click:function () { sortBy('Author') }">Author</a></th>
+                <th><a class='btn btn-info' title="Duration in minutes" data-bind="click:function () {sortBy('DurationMin')}">Duration in minutes</a></th>
+                <th><a class='btn btn-info' title="Music genre" data-bind="click:function () {sortBy('MusicGenre.Name')}">Music genre</a></th>
+                <th><a class='btn btn-info' title="Actions" data-bind="click:function () {sortBy('Actions')}">Actions</a></th>
             </tr>
         </thead>
         <tbody data-bind="foreach: songs">

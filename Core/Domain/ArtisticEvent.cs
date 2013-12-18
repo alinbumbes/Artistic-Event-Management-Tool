@@ -9,13 +9,13 @@ namespace Core.Domain
 {
     public class ArtisticEvent 
     {
-        public virtual long Id { get; set; }
+        public virtual long? Id { get; set; }
         public virtual EventType Type { get; set; }
         public virtual User Requester { get; set; }
         public virtual DateTime Date { get; set; }
-        public virtual decimal DurationInHours { get; set; }
+        public virtual decimal? DurationInHours { get; set; }
         public virtual string EventLocation { get; set; }
-        public virtual decimal Price { get; set; } 
+        public virtual decimal? Price { get; set; } 
     }
     
 }

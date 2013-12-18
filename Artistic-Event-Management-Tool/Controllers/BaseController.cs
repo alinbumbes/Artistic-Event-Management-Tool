@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Core;
+using Core.Domain;
 using Core.Domain.Validation;
 using Data.QuerySystem;
 using Newtonsoft.Json;
@@ -50,7 +51,8 @@ namespace Web.Controllers
                 return false;
             }
 
-            var objectSentFromClient =  JsonConvert.DeserializeObject(objectStringified, AllCoreClasses.NameTypeMap[type]);
+            //objectStringified = objectStringified.Replace("\"Id\":null,","\"Id\":-1,");
+            var objectSentFromClient = JsonConvert.DeserializeObject(objectStringified, AllCoreClasses.NameTypeMap[type]);
             if (objectSentFromClient == null)
             {
                 return false;
@@ -66,7 +68,11 @@ namespace Web.Controllers
             
             try
             {
-                Session.SaveOrUpdate(type, objectSentFromClient);
+                using (var tx = Session.BeginTransaction())
+                {
+                    Session.SaveOrUpdate(type, objectSentFromClient);
+                    tx.Commit();
+                }
                 return true;
             }
             catch (Exception ex)
@@ -74,6 +80,17 @@ namespace Web.Controllers
                 return false;
             }
             
+        }
+
+        protected bool Delete(string type, string idObject)
+        {
+            if (string.IsNullOrEmpty(type) || string.IsNullOrEmpty(idObject))
+            {
+                return false;
+            }
+
+
+            return true;
         }
 
 
