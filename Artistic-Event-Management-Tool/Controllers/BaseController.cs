@@ -26,7 +26,7 @@ namespace Web.Controllers
             this.ValidatorFactory = validatorFactory;
         }
 
-        protected List<List<object>> GetAll(string[] entityTypes)
+        protected List<List<object>> GetAllOfManyTypes(string[] entityTypes)
         {
             var result = new List<List<object>>();
             
@@ -36,6 +36,11 @@ namespace Web.Controllers
             }
 
             return result;
+        }
+
+        protected List<object> GetEntities(string type, string where, string orderBy, int? skip, int? take)
+        {
+            return null;
         }
 
         protected bool SaveOrOpdate(string type, string objectStringified)

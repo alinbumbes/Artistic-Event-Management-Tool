@@ -36,7 +36,7 @@ namespace Web.Controllers
 
         public JsonResult GetAll(string entityTypesComaSeparated)
         {
-            var allEntitiesOfRequestedTypes = base.GetAll(entityTypesComaSeparated.Split(','));
+            var allEntitiesOfRequestedTypes = base.GetAllOfManyTypes(entityTypesComaSeparated.Split(','));
             return Json(allEntitiesOfRequestedTypes, JsonRequestBehavior.AllowGet);
         }
 

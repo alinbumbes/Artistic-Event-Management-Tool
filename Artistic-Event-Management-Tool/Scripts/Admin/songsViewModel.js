@@ -105,6 +105,7 @@ Admin.SongsViewModel = function() {
                     if (response === true) {
                         vm.songEditPanelDialog.dialog("close");
                         toastr.success(AppConstants.SAVE_SUCCESSFULL_MESSAGE);
+                        $("#songsButton").click();
                     } else {
                         
                         var errorText = AppConstants.SAVE_FAILED_MESSAGE;
@@ -115,7 +116,7 @@ Admin.SongsViewModel = function() {
                     }
                 })
             .fail(function () {
-                toastr.error(DetectionConfiguration.SAVE_FAILED_MESSAGE);
+                toastr.error(AppConstants.SAVE_FAILED_MESSAGE);
             });
 
             }
