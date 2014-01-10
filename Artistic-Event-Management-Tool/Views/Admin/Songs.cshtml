@@ -6,16 +6,16 @@
 <div>
     <div>Songs</div>
 
-    <a class='btn btn-info btn-large' title="Add new" data-bind="click:addNewSong">AddNew</a>
+    <a class='btn btn-info btn-large' title="Add new" data-bind="click:addNew">AddNew</a>
     <table>
         <thead>
             <tr>
                 <th>Id</th>
-                <th><a class='btn btn-info' title="Name" data-bind="click:function () {sortBy('Name')}">Name</a></th>
-                <th><a class='btn btn-info' title="Author" data-bind="click:function () { sortBy('Author') }">Author</a></th>
-                <th><a class='btn btn-info' title="Duration in minutes" data-bind="click:function () {sortBy('DurationMin')}">Duration in minutes</a></th>
-                <th><a class='btn btn-info' title="Music genre" data-bind="click:function () {sortBy('MusicGenre.Name')}">Music genre</a></th>
-                <th><a class='btn btn-info' title="Actions" data-bind="click:function () {sortBy('Actions')}">Actions</a></th>
+                <th><a class='btn btn-info' title="Name" data-bind="click:function () {orderBy('Name')}">Name</a></th>
+                <th><a class='btn btn-info' title="Author" data-bind="click:function () { orderBy('Author') }">Author</a></th>
+                <th><a class='btn btn-info' title="Duration in minutes" data-bind="click:function () {orderBy('DurationMin')}">Duration in minutes</a></th>
+                <th><a class='btn btn-info' title="Music genre" data-bind="click:function () {orderBy('MusicGenre.Name')}">Music genre</a></th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: songs">
@@ -25,8 +25,8 @@
                 <td data-bind="text: Author"></td>
                 <td data-bind="text: DurationMin"></td>
                 <td data-bind="text: MusicGenre.Name"></td>
-                <td><a class='btn btn-info btn-large' title="Edit" data-bind="click:$parent.editSong">Edit</a></td>
-                <td><a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.deleteSong">Delete</a></td>
+                <td><a class='btn btn-info btn-large' title="Edit" data-bind="click:$parent.edit">Edit</a></td>
+                <td><a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.delete">Delete</a></td>
             </tr>
         </tbody>
     </table>
@@ -34,14 +34,14 @@
 
 <div id="songEditPanel" title="Song details">
     <label>Name</label>
-    <input data-bind="value:song.Name" />
+    <input data-bind="value:selectedSong.Name" />
     <label>Author</label>
-    <input data-bind="value:song.Author" />
+    <input data-bind="value:selectedSong.Author" />
     <label>Duration in minutes</label>
-    <input data-bind="value:song.DurationMin" />
+    <input data-bind="value:selectedSong.DurationMin" />
     <label>MusicGenre</label>
     <select data-bind="options: musicGenres,
                        optionsText: 'Name',
-                       value: song.MusicGenre,
+                       value: selectedSong.MusicGenre,
                        optionscaption: 'Choose music genre...' "></select>
 </div>

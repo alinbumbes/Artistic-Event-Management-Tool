@@ -19,7 +19,7 @@ namespace Data.QuerySystem
 
             //Examples
             //whereClause = "(otherInfo==@0 or id==@1) and otherInfo==@2"; and
-            //whereParams={"word",5,"other word"}
+            //whereParams=["word",5,"other word"]
 
             //orderByClause="Name" or 
             //orderByClause="Name desc"

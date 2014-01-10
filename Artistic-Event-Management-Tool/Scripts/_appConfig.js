@@ -3,5 +3,7 @@
 appConfig = {};
 
 //ADMIN SECTION
-appConfig.adminGetAllEntitiesOfTypesUrl = urlFormater("Admin/GetAll");
+appConfig.adminGetAllEntitiesOfTypesUrl = urlFormater("Admin/GetAllOfManyTypes");
+appConfig.adminGetFilteredUrl = urlFormater("Admin/GetFiltered");
 appConfig.adminSaveOrOpdate = urlFormater("Admin/SaveOrOpdate");
+appConfig.adminDelete = urlFormater("Admin/Delete");

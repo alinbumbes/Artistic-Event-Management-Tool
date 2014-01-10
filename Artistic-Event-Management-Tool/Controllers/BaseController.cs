@@ -8,7 +8,9 @@ using System.Web.Mvc;
 using Core;
 using Core.Domain;
 using Core.Domain.Validation;
+using Core.Extensions;
 using Data.QuerySystem;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using NHibernate;
 
@@ -26,10 +28,12 @@ namespace Web.Controllers
             this.ValidatorFactory = validatorFactory;
         }
 
-        protected List<List<object>> GetAllOfManyTypes(string[] entityTypes)
+        protected List<List<object>> GetAllOfManyTypes(string entityTypesComaSeparated)
         {
             var result = new List<List<object>>();
-            
+
+            var entityTypes = entityTypesComaSeparated.Split(',');
+
             foreach (var type in entityTypes)
             {
                result.Add(Session.Query(type).ToList());
@@ -38,9 +42,22 @@ namespace Web.Controllers
             return result;
         }
 
-        protected List<object> GetEntities(string type, string where, string orderBy, int? skip, int? take)
+        protected List<object> GetFiltered(string type, string whereClause = null, string whereParamsCommaSeparated = null, string selectClause = null, string orderByClause = null, int? takeClause = null, int? skipClause = null)
         {
-            return null;
+            object[] whereParams;
+            if (!string.IsNullOrEmpty(whereParamsCommaSeparated)
+                && !string.IsNullOrWhiteSpace(whereParamsCommaSeparated))
+            {
+                whereParams = whereParamsCommaSeparated.Split(',').ToList()
+                    .ToListOfType<string,object>().ToArray();
+            }
+            else
+            {
+                whereParams = null;
+            }
+
+            var result = Session.Query(type, whereClause, whereParams, selectClause, orderByClause, takeClause, skipClause).ToList();
+            return result;
         }
 
         protected bool SaveOrOpdate(string type, string objectStringified)
@@ -70,20 +87,13 @@ namespace Web.Controllers
             {
                 return false;
             }
-            
-            try
+
+            using (var tx = Session.BeginTransaction())
             {
-                using (var tx = Session.BeginTransaction())
-                {
-                    Session.SaveOrUpdate(type, objectSentFromClient);
-                    tx.Commit();
-                }
-                return true;
+                Session.SaveOrUpdate(type, objectSentFromClient);
+                tx.Commit();
             }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            return true;
             
         }
 
@@ -94,6 +104,12 @@ namespace Web.Controllers
                 return false;
             }
 
+            using (var tx = Session.BeginTransaction())
+            {
+                var objForDeletion = Session.Load(type, Int64.Parse(idObject));
+                Session.Delete(objForDeletion);
+                tx.Commit();
+            }
 
             return true;
         }

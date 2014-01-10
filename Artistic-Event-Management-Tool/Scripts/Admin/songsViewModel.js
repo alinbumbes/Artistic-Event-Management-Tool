@@ -14,15 +14,15 @@ Admin.Song = function () {
         min: 0
     });
     self.MusicGenre = ko.observable(null).extend({ required: true });
-    
+
     //computed
-   
+
     //methods
     self.updateFromModel = function (model) {
         if (!model) {
             model = {};
         }
-        
+
         self.Id(model.Id || null);
         self.Name(model.Name || null);
         self.Author(model.Author || null);
@@ -30,55 +30,111 @@ Admin.Song = function () {
         self.MusicGenre(model.MusicGenre || null);
 
     };
-    
+
 };
 
 
 
 //View models should end in ViewModel
-Admin.SongsViewModel = function() {
+Admin.SongsViewModel = function () {
     //make vm closure accesible everywhere within this scope
     var self = this;
 
     //observables
     self.songs = ko.observable();
     self.musicGenres = ko.observable();
-    
-    self.song = new Admin.Song();
+    self.orderByClause = ko.observable();
+
+
+    self.selectedSong = new Admin.Song();
     //computed
 
     //methods
-    self.addNewSong = function () {
-        self.song.updateFromModel();
+    self.addNew = function () {
+        self.selectedSong.updateFromModel();
         self.songEditPanelDialog.dialog("open");
 
     };
 
-    self.editSong = function (selectedSong) {
-        self.song.updateFromModel(selectedSong);
+    self.edit = function (selected) {
+        self.selectedSong.updateFromModel(selected);
         self.songEditPanelDialog.dialog("open");
-        
+
+    };
+    
+    self.orderBy = function (propertyName) {
+        if (!self.orderByClause()
+            || self.orderByClause() !== propertyName) {
+            self.orderByClause(propertyName);
+        } else {
+            self.orderByClause(propertyName + " desc");
+        }
+
+        var requestGetFiltered = {
+            type: "Song",
+            orderByClause: self.orderByClause()
+        };
+
+        var promise = server.postData(appConfig.adminGetFilteredUrl, requestGetFiltered)
+                .done(function (response) {
+                    self.songs(response);
+                })
+            .fail(function () {
+                toastr.error(AppConstants.FAILED_MESSAGE);
+            });
     };
 
-    self.deleteSong = function (song) {
-        var x = song;
+    self.saveOrUpdate = function() {
+        var requestSaveData = {
+            type: "Song",
+            objectStringified: JSON.stringify({
+                Id: self.selectedSong.Id(),
+                Name: self.selectedSong.Name(),
+                Author: self.selectedSong.Author(),
+                DurationMin: self.selectedSong.DurationMin(),
+                MusicGenre: self.selectedSong.MusicGenre()
+            }),
+            orderByClause: self.orderByClause()
+        };
+        var promise = server.postData(appConfig.adminSaveOrOpdate, requestSaveData)
+            .done(function(response) {
+                self.songEditPanelDialog.dialog("close");
+                toastr.success(AppConstants.SAVE_SUCCESSFULL_MESSAGE);
+                self.songs(response);
+            })
+            .fail(function() {
+                toastr.error(AppConstants.SAVE_FAILED_MESSAGE);
+            });
     };
 
-    self.sortBy = function(propertyName) {
-        var s = 4;
+    self.delete = function (selected) {
+        self.selectedSong.updateFromModel(selected);
+        var requestDeleteData = {
+            type: "Song",
+            objectId: self.selectedSong.Id(),
+            orderByClause: self.orderByClause()
+        };
+        var promise = server.postData(appConfig.adminDelete, requestDeleteData)
+            .done(function (response) {
+                toastr.success(AppConstants.DELETE_SUCCESSFULL_MESSAGE);
+                self.songs(response);
+            })
+            .fail(function () {
+                toastr.error(AppConstants.DELETE_FAILED_MESSAGE);
+            });
     };
 
 };
 
 //initializer
-(function() {
+(function () {
     //apply bindings
     var vm = new Admin.SongsViewModel();
 
 
     vm.songEditPanelDialog = $("#songEditPanel").dialog({
         width: 500,
-        height:500,
+        height: 500,
         autoOpen: false,
         modal: true,
         open: function () {
@@ -90,35 +146,7 @@ Admin.SongsViewModel = function() {
         buttons: [{
             text: "Save",
             click: function () {
-                var requestSaveData = {
-                    type: "Song",
-                    objectStringified: JSON.stringify({
-                        Id: vm.song.Id(),
-                        Name: vm.song.Name(),
-                        Author: vm.song.Author(),
-                        DurationMin: vm.song.DurationMin(),
-                        MusicGenre: vm.song.MusicGenre()
-                    })
-                };
-                var promise = server.postData(appConfig.adminSaveOrOpdate, requestSaveData)
-                .done(function (response) {
-                    if (response === true) {
-                        vm.songEditPanelDialog.dialog("close");
-                        toastr.success(AppConstants.SAVE_SUCCESSFULL_MESSAGE);
-                        $("#songsButton").click();
-                    } else {
-                        
-                        var errorText = AppConstants.SAVE_FAILED_MESSAGE;
-                        if (response) {
-                            errorText += response;
-                        }
-                        toastr.error(errorText);
-                    }
-                })
-            .fail(function () {
-                toastr.error(AppConstants.SAVE_FAILED_MESSAGE);
-            });
-
+                vm.saveOrUpdate();
             }
         },
          {
@@ -136,7 +164,7 @@ Admin.SongsViewModel = function() {
     var promise = server.getDataWithoutStringify(appConfig.adminGetAllEntitiesOfTypesUrl, requestData)
     .done(function (response) {
         vm.songs(response[0]);
-        
+
         vm.musicGenres(response[1]);
         vm.musicGenres().each(function (musicGenre) {
             if (musicGenre.Parent) {
@@ -162,6 +190,6 @@ Admin.SongsViewModel = function() {
 
         toastr.error(errorText);
     });
-      
+
 })();
 
