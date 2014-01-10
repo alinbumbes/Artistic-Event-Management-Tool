@@ -65,6 +65,7 @@ namespace Web.Controllers
                 throw new Exception(string.Format("Delete failed for type: {0} and objectId:{1}", type, objectId));
             }
 
+
             var allEntitiesOfRequestedTypes = base.GetFiltered(type, whereClause, whereParamsCommaSeparated, selectClause, orderByClause, takeClause, skipClause);
             return Json(allEntitiesOfRequestedTypes, JsonRequestBehavior.AllowGet);
         }
