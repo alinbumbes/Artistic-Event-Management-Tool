@@ -60,6 +60,24 @@ namespace Web.Controllers
             return result;
         }
 
+        protected int CountFiltered(string type, string whereClause = null, string whereParamsCommaSeparated = null)
+        {
+            object[] whereParams;
+            if (!string.IsNullOrEmpty(whereParamsCommaSeparated)
+                && !string.IsNullOrWhiteSpace(whereParamsCommaSeparated))
+            {
+                whereParams = whereParamsCommaSeparated.Split(',').ToList()
+                    .ToListOfType<string, object>().ToArray();
+            }
+            else
+            {
+                whereParams = null;
+            }
+
+            var result = Session.Query(type, whereClause, whereParams).Count();
+            return result;
+        }
+
         protected bool SaveOrOpdate(string type, string objectStringified)
         {
             if (string.IsNullOrEmpty(type)

@@ -44,24 +44,75 @@ Admin.SongsViewModel = function () {
     self.songs = ko.observable();
     self.musicGenres = ko.observable();
     self.orderByClause = ko.observable();
-
-
+    self.takeClause = ko.observable(10);
+    self.currentPage = ko.observable();
+    self.totalCount = ko.observable(0);
     self.selectedSong = new Admin.Song();
+
     //computed
+    self.skipClause = ko.computed(function () {
+        return self.takeClause() * (self.currentPage() - 1);
+    });
+
+    self.lastPage = ko.computed(function () {
+        return Math.round(self.totalCount() / self.takeClause());
+    });
+
+    self.canGoToFirstPage = ko.computed(function () {
+        return self.currentPage() > 1;
+    });
+
+    self.canGoBack = ko.computed(function () {
+        return self.currentPage() > 1;
+    });
+
+    self.canGoForward = ko.computed(function () {
+        return self.currentPage() < self.lastPage();
+    });
+
+    self.canGoToLastPage = ko.computed(function () {
+        return self.currentPage() < self.lastPage();
+    });
+
+    //subscriptions
+    self.currentPage.subscribe(function (newValue) {
+        if (newValue) {
+            server.postData(appConfig.adminGetFilteredUrl,
+            {
+                type: "Song",
+                orderByClause: self.orderByClause(),
+                takeClause: self.takeClause(),
+                skipClause: self.skipClause()
+            })
+                .done(function (response) {
+                    self.songs(response.queryResult);
+                    self.totalCount(response.totalCount);
+                })
+                .fail(function () {
+                    toastr.error(AppConstants.FAILED_MESSAGE);
+                });
+        }
+    });
 
     //methods
-    self.addNew = function () {
-        self.selectedSong.updateFromModel();
-        self.songEditPanelDialog.dialog("open");
-
+    self.goToFirstPage = function () {
+        self.currentPage(1);
     };
 
-    self.edit = function (selected) {
-        self.selectedSong.updateFromModel(selected);
-        self.songEditPanelDialog.dialog("open");
-
+    self.goBack = function () {
+        var currentPage = self.currentPage();
+        self.currentPage(--currentPage);
     };
-    
+
+    self.goForward = function () {
+        var currentPage = self.currentPage();
+        self.currentPage(++currentPage);
+    };
+
+    self.goToLastPage = function () {
+        self.currentPage(self.lastPage());
+    };
+
     self.orderBy = function (propertyName) {
         if (!self.orderByClause()
             || self.orderByClause() !== propertyName) {
@@ -70,21 +121,32 @@ Admin.SongsViewModel = function () {
             self.orderByClause(propertyName + " desc");
         }
 
-        var requestGetFiltered = {
+        server.postData(appConfig.adminGetFilteredUrl, {
             type: "Song",
-            orderByClause: self.orderByClause()
-        };
-
-        var promise = server.postData(appConfig.adminGetFilteredUrl, requestGetFiltered)
-                .done(function (response) {
-                    self.songs(response);
-                })
-            .fail(function () {
-                toastr.error(AppConstants.FAILED_MESSAGE);
-            });
+            orderByClause: self.orderByClause(),
+            takeClause: self.takeClause(),
+            skipClause: self.skipClause()
+        })
+                  .done(function (response) {
+                      self.songs(response.queryResult);
+                      self.totalCount(response.totalCount);
+                  })
+              .fail(function () {
+                  toastr.error(AppConstants.FAILED_MESSAGE);
+              });
     };
 
-    self.saveOrUpdate = function() {
+    self.addNew = function () {
+        self.selectedSong.updateFromModel();
+        self.songEditPanelDialog.dialog("open");
+    };
+
+    self.edit = function (selected) {
+        self.selectedSong.updateFromModel(selected);
+        self.songEditPanelDialog.dialog("open");
+    };
+
+    self.saveOrUpdate = function () {
         var requestSaveData = {
             type: "Song",
             objectStringified: JSON.stringify({
@@ -94,15 +156,18 @@ Admin.SongsViewModel = function () {
                 DurationMin: self.selectedSong.DurationMin(),
                 MusicGenre: self.selectedSong.MusicGenre()
             }),
-            orderByClause: self.orderByClause()
+            orderByClause: self.orderByClause(),
+            takeClause: self.takeClause(),
+            skipClause: self.skipClause()
         };
-        var promise = server.postData(appConfig.adminSaveOrOpdate, requestSaveData)
-            .done(function(response) {
+
+        server.postData(appConfig.adminSaveOrOpdate, requestSaveData)
+            .done(function (response) {
                 self.songEditPanelDialog.dialog("close");
                 toastr.success(AppConstants.SAVE_SUCCESSFULL_MESSAGE);
                 self.songs(response);
             })
-            .fail(function() {
+            .fail(function () {
                 toastr.error(AppConstants.SAVE_FAILED_MESSAGE);
             });
     };
@@ -112,7 +177,9 @@ Admin.SongsViewModel = function () {
         var requestDeleteData = {
             type: "Song",
             objectId: self.selectedSong.Id(),
-            orderByClause: self.orderByClause()
+            orderByClause: self.orderByClause(),
+            takeClause: self.takeClause(),
+            skipClause: self.skipClause()
         };
         var promise = server.postData(appConfig.adminDelete, requestDeleteData)
             .done(function (response) {
@@ -158,14 +225,13 @@ Admin.SongsViewModel = function () {
     });
 
 
-    var requestData = {
-        entityTypesComaSeparated: "Song,MusicGenre"
-    };
-    var promise = server.getDataWithoutStringify(appConfig.adminGetAllEntitiesOfTypesUrl, requestData)
-    .done(function (response) {
-        vm.songs(response[0]);
 
-        vm.musicGenres(response[1]);
+    server.getDataWithoutStringify(appConfig.adminGetAllEntitiesOfTypesUrl,
+    {
+        entityTypesComaSeparated: "MusicGenre"
+    })
+    .done(function (response) {
+        vm.musicGenres(response[0]);
         vm.musicGenres().each(function (musicGenre) {
             if (musicGenre.Parent) {
                 musicGenre.Name = musicGenre.Parent.Name + " (" + musicGenre.Name + ")";
@@ -178,7 +244,6 @@ Admin.SongsViewModel = function () {
             return musicGenre.Name;
         }));
 
-
         ko.applyBindings(vm);
     })
     .fail(function (message) {
@@ -190,6 +255,8 @@ Admin.SongsViewModel = function () {
 
         toastr.error(errorText);
     });
+
+    vm.currentPage(1);
 
 })();
 

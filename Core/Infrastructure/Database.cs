@@ -132,27 +132,30 @@ namespace Core.Infrastructure
                     var eventConcertLive = new EventType("Concert live", 15000);
                     session.Save(eventConcertLive);
 
-                    //SONGS
-                    var songMariesiMarioara = new Song();
-                    songMariesiMarioara.Name = "Marie si Marioara";
-                    songMariesiMarioara.DurationMin = 2;
-                    songMariesiMarioara.MusicGenre = sarba;
-                    session.Save(songMariesiMarioara);
 
-                    var ceSeAude = new Song();
-                    ceSeAude.Name = "Ce se-aude mai neicuta";
-                    ceSeAude.DurationMin = 2.7;
-                    ceSeAude.MusicGenre = sarba;
-                    session.Save(ceSeAude);
+                    for (int i = 1; i < 1000; i++)
+                    {
+                        //SONGS
+                        var songMariesiMarioara = new Song();
+                        songMariesiMarioara.Name = "Marie si Marioara" + i;
+                        songMariesiMarioara.DurationMin = 2;
+                        songMariesiMarioara.MusicGenre = sarba;
+                        session.Save(songMariesiMarioara);
 
-                    var haiHaiCuTrasioara = new Song();
-                    haiHaiCuTrasioara.Name = "Hai hai cu trasioara";
-                    haiHaiCuTrasioara.DurationMin = 2.3;
-                    haiHaiCuTrasioara.MusicGenre = hora;
-                    haiHaiCuTrasioara.Author = "Liviu Vasilica";
-                    session.Save(haiHaiCuTrasioara);
+                        var ceSeAude = new Song();
+                        ceSeAude.Name = "Ce se-aude mai neicuta" + i;
+                        ceSeAude.DurationMin = 2.7;
+                        ceSeAude.MusicGenre = sarba;
+                        session.Save(ceSeAude);
 
+                        var haiHaiCuTrasioara = new Song();
+                        haiHaiCuTrasioara.Name = "Hai hai cu trasioara" + i;
+                        haiHaiCuTrasioara.DurationMin = 2.3;
+                        haiHaiCuTrasioara.MusicGenre = hora;
+                        haiHaiCuTrasioara.Author = "Liviu Vasilica";
+                        session.Save(haiHaiCuTrasioara);
 
+                    }
                     tx.Commit();
                 }
             }

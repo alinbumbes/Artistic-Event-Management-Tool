@@ -43,7 +43,11 @@ namespace Web.Controllers
         public new JsonResult GetFiltered(string type, string whereClause = null, string whereParamsCommaSeparated = null, string selectClause = null, string orderByClause = null, int? takeClause = null, int? skipClause = null)
         {
             var allEntitiesOfRequestedTypes = base.GetFiltered(type, whereClause, whereParamsCommaSeparated, selectClause, orderByClause, takeClause, skipClause);
-            return Json(allEntitiesOfRequestedTypes, JsonRequestBehavior.AllowGet);
+            var totalCount = base.CountFiltered(type, whereClause, whereParamsCommaSeparated);
+            return Json(new {
+                queryResult = allEntitiesOfRequestedTypes,
+                totalCount = totalCount
+            }, JsonRequestBehavior.AllowGet);
         }
 
         
