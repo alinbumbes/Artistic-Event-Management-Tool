@@ -34,9 +34,9 @@ namespace Web.Controllers
             return View();
         }
 
-        public new JsonResult GetAllOfManyTypes(string entityTypesComaSeparated)
+        public new JsonResult GetAllOfManyTypes(string entityTypesComaSeparated, string orderByClausesComaSeparated)
         {
-            var allEntitiesOfRequestedTypes = base.GetAllOfManyTypes(entityTypesComaSeparated);
+            var allEntitiesOfRequestedTypes = base.GetAllOfManyTypes(entityTypesComaSeparated, orderByClausesComaSeparated);
             return Json(allEntitiesOfRequestedTypes, JsonRequestBehavior.AllowGet);
         }
 

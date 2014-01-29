@@ -89,51 +89,79 @@ namespace Core.Infrastructure
                     session.Save(user);
 
                     //MUSIC GENRES
-                    var muzicapopulara = new MusicGenre("Muzica populara");
-                    session.Save(muzicapopulara);
-
-                    var sarba = new MusicGenre("Sarbe");
-                    sarba.Parent = muzicapopulara;
+                    var sarba = new MusicGenre()
+                    {
+                        Name = "Sarba",
+                        Description = "Muzica populara romaneasca"
+                    };
                     session.Save(sarba);
 
-                    var hora = new MusicGenre("Hore");
-                    hora.Parent = muzicapopulara;
+                    var hora = new MusicGenre()
+                    {
+                        Name = "Hora",
+                        Description = "Muzica populara romaneasca de joc"
+                    };
                     session.Save(hora);
 
-                    var doina = new MusicGenre("Doine");
-                    doina.Parent = muzicapopulara;
+                    var doina = new MusicGenre()
+                    {
+                        Name = "Doina",
+                        Description = "Muzica populara romaneasca de jale"
+                    };
                     session.Save(doina);
-                    
-                    var muzicaUsoara = new MusicGenre("Muzica usoara");
-                    session.Save(muzicaUsoara);
-
-                    var blues = new MusicGenre("Blues");
-                    blues.Parent = muzicaUsoara;
+                   
+                    var blues = new MusicGenre()
+                    {
+                        Name = "Blues",
+                        Description = "Muzica usoara lenta"
+                    };
                     session.Save(blues);
 
-                    var rockAndRoll = new MusicGenre("Rock and roll");
-                    rockAndRoll.Parent = muzicaUsoara;
+                    var rockAndRoll = new MusicGenre()
+                    {
+                        Name = "Rock and roll",
+                        Description = "Muzica usoara foaret ritmata"
+                    };
                     session.Save(rockAndRoll);
 
-                    var pop = new MusicGenre("Pop");
-                    pop.Parent = muzicaUsoara;
+                    var pop = new MusicGenre()
+                    {
+                        Name = "Pop"
+                    };
                     session.Save(pop);
 
-                    var hiphop = new MusicGenre("Hip hop");
-                    hiphop.Parent = muzicaUsoara;
+                    var hiphop = new MusicGenre()
+                    {
+                        Name = "Hip hop"
+                    };
                     session.Save(hiphop);
 
 
                     //EVENT TYPES
-                    var eventNunta = new EventType("Nunta", 800);
+                    var eventNunta = new EventType()
+                    {
+                        Name = "Nunta",
+                        PricePerHour = 300,
+                        MinimumHoursDuration = 4
+                    };
                     session.Save(eventNunta);
-                    var eventBotez = new EventType("Botez", 500);
+                    var eventBotez = new EventType()
+                    {
+                        Name = "Botez",
+                        PricePerHour = 150,
+                        MinimumHoursDuration = 3
+                    };
                     session.Save(eventBotez);
-                    var eventConcertLive = new EventType("Concert live", 15000);
+                    var eventConcertLive = new EventType()
+                    {
+                        Name = "Concert live",
+                        PricePerHour = 500,
+                        MinimumHoursDuration = 1
+                    };
                     session.Save(eventConcertLive);
 
 
-                    for (int i = 1; i < 1000; i++)
+                    for (int i = 1; i < 100; i++)
                     {
                         //SONGS
                         var songMariesiMarioara = new Song();

@@ -11,16 +11,7 @@ namespace Core.Domain
         public virtual long Id { get; set; }
         public virtual string Name { get; set; }
         public virtual decimal? PricePerHour { get; set; }
-
-        public EventType()
-        {
-            
-        }
-
-        public EventType(string name, decimal pricePerHour)
-        {
-            Name = name;
-            PricePerHour = pricePerHour;
-        }
+        public virtual int MinimumHoursDuration { get; set; }
+        
     }
 }

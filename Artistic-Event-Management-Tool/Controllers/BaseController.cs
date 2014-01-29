@@ -28,15 +28,25 @@ namespace Web.Controllers
             this.ValidatorFactory = validatorFactory;
         }
 
-        protected List<List<object>> GetAllOfManyTypes(string entityTypesComaSeparated)
+        protected List<List<object>> GetAllOfManyTypes(string entityTypesComaSeparated, string orderByClausesComaSeparated)
         {
             var result = new List<List<object>>();
 
-            var entityTypes = entityTypesComaSeparated.Split(',');
+            var entityTypes = entityTypesComaSeparated.Split(',').ToList();
+            var orderByClauses = orderByClausesComaSeparated.Split(',').ToList();
 
-            foreach (var type in entityTypes)
+            for(int i=0;i<entityTypes.Count;i++)
             {
-               result.Add(Session.Query(type).ToList());
+                var type = entityTypes[i];
+                if (i < orderByClauses.Count)
+                {
+                    result.Add(Session.Query(type, orderByClause: orderByClauses[i]).ToList());
+                }
+                else
+                {
+                    result.Add(Session.Query(type).ToList());
+                }
+               
             }
 
             return result;

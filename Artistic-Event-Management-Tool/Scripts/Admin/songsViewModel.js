@@ -228,22 +228,11 @@ Admin.SongsViewModel = function () {
 
     server.getDataWithoutStringify(appConfig.adminGetAllEntitiesOfTypesUrl,
     {
-        entityTypesComaSeparated: "MusicGenre"
+        entityTypesComaSeparated: "MusicGenre",
+        orderByClausesComaSeparated:"Name"
     })
     .done(function (response) {
         vm.musicGenres(response[0]);
-        vm.musicGenres().each(function (musicGenre) {
-            if (musicGenre.Parent) {
-                musicGenre.Name = musicGenre.Parent.Name + " (" + musicGenre.Name + ")";
-            } else {
-                musicGenre.Name = musicGenre.Name + " (Other)";
-            }
-        });
-
-        vm.musicGenres(vm.musicGenres().sortBy(function (musicGenre) {
-            return musicGenre.Name;
-        }));
-
         ko.applyBindings(vm);
     })
     .fail(function (message) {

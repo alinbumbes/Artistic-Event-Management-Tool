@@ -13,8 +13,8 @@ namespace Core.Domain.Mappings
         {
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name).Not.Nullable();
-           
-            References(x => x.Parent);
+            Map(x => x.Description);
+
         }
     }
 }
