@@ -197,8 +197,7 @@ Admin.SongsViewModel = function () {
 (function () {
     //apply bindings
     var vm = new Admin.SongsViewModel();
-
-
+    
     vm.songEditPanelDialog = $("#songEditPanel").dialog({
         width: 500,
         height: 500,
@@ -223,9 +222,7 @@ Admin.SongsViewModel = function () {
              }
          }]
     });
-
-
-
+    
     server.getDataWithoutStringify(appConfig.adminGetAllEntitiesOfTypesUrl,
     {
         entityTypesComaSeparated: "MusicGenre",

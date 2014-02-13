@@ -10,7 +10,6 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th><a class='btn btn-info' title="Name" data-bind="click:function () {orderBy('Name')}">Name</a></th>
                 <th><a class='btn btn-info' title="Author" data-bind="click:function () { orderBy('Author') }">Author</a></th>
                 <th><a class='btn btn-info' title="Duration in minutes" data-bind="click:function () {orderBy('DurationMin')}">Duration in minutes</a></th>
@@ -20,7 +19,6 @@
         </thead>
         <tbody data-bind="foreach: songs">
             <tr>
-                <td data-bind="text: Id"></td>
                 <td data-bind="text: Name"></td>
                 <td data-bind="text: Author"></td>
                 <td data-bind="text: DurationMin"></td>

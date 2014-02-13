@@ -38,7 +38,8 @@ namespace Web.Controllers
             for(int i=0;i<entityTypes.Count;i++)
             {
                 var type = entityTypes[i];
-                if (i < orderByClauses.Count)
+                if (i < orderByClauses.Count
+                    && !string.IsNullOrEmpty(orderByClauses[i]))
                 {
                     result.Add(Session.Query(type, orderByClause: orderByClauses[i]).ToList());
                 }
