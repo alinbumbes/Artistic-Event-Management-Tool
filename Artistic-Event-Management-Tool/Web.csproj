@@ -176,6 +176,7 @@
     <Content Include="Scripts\Dependencies\sugar.js" />
     <Content Include="Scripts\Dependencies\toastr.js" />
     <Content Include="Scripts\Home\homeViewModel.js" />
+    <Content Include="Scripts\Shared\crudAndFilter.js" />
     <Content Include="Scripts\Shared\server.js" />
     <Content Include="Scripts\_appConfig.js" />
     <Content Include="Web.config" />

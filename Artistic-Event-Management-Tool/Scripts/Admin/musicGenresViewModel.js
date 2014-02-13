@@ -9,7 +9,7 @@ Admin.MusicGenre = function () {
     self.Id = ko.observable(null);
     self.Name = ko.observable(null).extend({ required: true });
     self.Description = ko.observable(null);
-    
+
     //computed
 
     //methods
@@ -29,16 +29,17 @@ Admin.MusicGenre = function () {
 Admin.MusicGenresViewModel = function () {
     //make vm closure accesible everywhere within this scope
     var self = this;
-    
+
     //observables
+    self.entityType = ko.observable("MusicGenre");
     self.musicGenres = ko.observable();
     self.selectedMusicGenre = new Admin.MusicGenre();
-    
+
     self.orderByClause = ko.observable();
     self.takeClause = ko.observable(10);
     self.currentPage = ko.observable();
     self.totalCount = ko.observable(0);
-    
+
     //computed
     self.skipClause = ko.computed(function () {
         return self.takeClause() * (self.currentPage() - 1);
@@ -63,29 +64,15 @@ Admin.MusicGenresViewModel = function () {
     self.canGoToLastPage = ko.computed(function () {
         return self.currentPage() < self.lastPage();
     });
-    
+
     //subscriptions
     self.currentPage.subscribe(function (newValue) {
         if (newValue) {
-            server.postData(appConfig.adminGetFilteredUrl,
-            {
-                type: "MusicGenre",
-                orderByClause: self.orderByClause(),
-                takeClause: self.takeClause(),
-                skipClause: self.skipClause()
-            })
-                .done(function (response) {
-                    self.musicGenres(response.queryResult);
-                    self.totalCount(response.totalCount);
-                })
-                .fail(function () {
-                    toastr.error(AppConstants.FAILED_MESSAGE);
-                });
+          crudAndFilter.goToPage(newValue, self.entityType(), self.takeClause(), self.skipClause(),
+            self.orderByClause(), self.musicGenres, self.totalCount);
         }
     });
-
-
-
+    
     //methods
     self.goToFirstPage = function () {
         self.currentPage(1);
@@ -104,28 +91,10 @@ Admin.MusicGenresViewModel = function () {
     self.goToLastPage = function () {
         self.currentPage(self.lastPage());
     };
-    
-    self.orderBy = function (propertyName) {
-        if (!self.orderByClause()
-            || self.orderByClause() !== propertyName) {
-            self.orderByClause(propertyName);
-        } else {
-            self.orderByClause(propertyName + " desc");
-        }
 
-        server.postData(appConfig.adminGetFilteredUrl, {
-            type: "MusicGenre",
-            orderByClause: self.orderByClause(),
-            takeClause: self.takeClause(),
-            skipClause: self.skipClause()
-        })
-                  .done(function (response) {
-                      self.musicGenres(response.queryResult);
-                      self.totalCount(response.totalCount);
-                  })
-              .fail(function () {
-                  toastr.error(AppConstants.FAILED_MESSAGE);
-              });
+    self.orderBy = function (propertyName) {
+        crudAndFilter.orderBy(propertyName, self.entityType(), self.takeClause(),  self.skipClause(),
+            self.orderByClause, self.musicGenres, self.totalCount);
     };
 
     self.addNew = function () {
@@ -139,51 +108,27 @@ Admin.MusicGenresViewModel = function () {
     };
 
     self.saveOrUpdate = function () {
-        var requestSaveData = {
-            type: "MusicGenre",
-            objectStringified: JSON.stringify({
-                Id: self.selectedMusicGenre.Id(),
-                Name: self.selectedMusicGenre.Name(),
-                Description: self.selectedMusicGenre.Description()
-            }),
-            orderByClause: self.orderByClause(),
-            takeClause: self.takeClause(),
-            skipClause: self.skipClause()
-        };
 
-        server.postData(appConfig.adminSaveOrOpdate, requestSaveData)
-            .done(function (response) {
-                self.musicGenreEditPanelDialog.dialog("close");
-                toastr.success(AppConstants.SAVE_SUCCESSFULL_MESSAGE);
-                self.musicGenres(response);
-            })
-            .fail(function () {
-                toastr.error(AppConstants.SAVE_FAILED_MESSAGE);
-            });
+        var objectStringified = JSON.stringify({
+            Id: self.selectedMusicGenre.Id(),
+            Name: self.selectedMusicGenre.Name(),
+            Description: self.selectedMusicGenre.Description()
+        });
+
+        crudAndFilter.saveOrUpdate(self.entityType(), objectStringified, self.takeClause(),
+            self.skipClause(), self.orderByClause(), self.musicGenres, self.totalCount,
+            self.musicGenreEditPanelDialog);
+        
     };
 
     self.delete = function (selected) {
-        self.selectedMusicGenre.updateFromModel(selected);
-        var requestDeleteData = {
-            type: "MusicGenre",
-            objectId: self.selectedMusicGenre.Id(),
-            orderByClause: self.orderByClause(),
-            takeClause: self.takeClause(),
-            skipClause: self.skipClause()
-        };
-        var promise = server.postData(appConfig.adminDelete, requestDeleteData)
-            .done(function (response) {
-                toastr.success(AppConstants.DELETE_SUCCESSFULL_MESSAGE);
-                self.musicGenres(response);
-            })
-            .fail(function () {
-                toastr.error(AppConstants.DELETE_FAILED_MESSAGE);
-            });
+        crudAndFilter.delete(self.entityType(), selected.Id, self.takeClause(),
+          self.skipClause(), self.orderByClause(), self.musicGenres, self.totalCount);
     };
 };
 
 //initializer
-(function() {
+(function () {
     //apply bindings
     var vm = new Admin.MusicGenresViewModel();
 
@@ -211,29 +156,8 @@ Admin.MusicGenresViewModel = function () {
              }
          }]
     });
-
-
-
-    server.getDataWithoutStringify(appConfig.adminGetAllEntitiesOfTypesUrl,
-    {
-        entityTypesComaSeparated: "MusicGenre",
-        orderByClausesComaSeparated: "Name"
-    })
-    .done(function (response) {
-        vm.musicGenres(response[0]);
-        ko.applyBindings(vm);
-    })
-    .fail(function (message) {
-
-        var errorText = AppConstants.FAILED_MESSAGE;
-        if (message) {
-            errorText += message;
-        }
-
-        toastr.error(errorText);
-    });
-
+    
     vm.currentPage(1);
-   
+    ko.applyBindings(vm);
 })();
 

@@ -8,7 +8,7 @@ Admin.Song = function () {
     //observables
     self.Id = ko.observable(null);
     self.Name = ko.observable(null).extend({ required: true });
-    self.Author = ko.observable(null).extend({ required: true });
+    self.Author = ko.observable(null);
     self.DurationMin = ko.observable(null).extend({
         required: true,
         min: 0
@@ -41,6 +41,7 @@ Admin.SongsViewModel = function () {
     var self = this;
 
     //observables
+    self.entityType = ko.observable("Song");
     self.songs = ko.observable();
     self.musicGenres = ko.observable();
     self.orderByClause = ko.observable();
@@ -77,20 +78,8 @@ Admin.SongsViewModel = function () {
     //subscriptions
     self.currentPage.subscribe(function (newValue) {
         if (newValue) {
-            server.postData(appConfig.adminGetFilteredUrl,
-            {
-                type: "Song",
-                orderByClause: self.orderByClause(),
-                takeClause: self.takeClause(),
-                skipClause: self.skipClause()
-            })
-                .done(function (response) {
-                    self.songs(response.queryResult);
-                    self.totalCount(response.totalCount);
-                })
-                .fail(function () {
-                    toastr.error(AppConstants.FAILED_MESSAGE);
-                });
+          crudAndFilter.goToPage(newValue, self.entityType(), self.takeClause(), self.skipClause(),
+                self.orderByClause(), self.songs, self.totalCount);
         }
     });
 
@@ -114,26 +103,8 @@ Admin.SongsViewModel = function () {
     };
 
     self.orderBy = function (propertyName) {
-        if (!self.orderByClause()
-            || self.orderByClause() !== propertyName) {
-            self.orderByClause(propertyName);
-        } else {
-            self.orderByClause(propertyName + " desc");
-        }
-
-        server.postData(appConfig.adminGetFilteredUrl, {
-            type: "Song",
-            orderByClause: self.orderByClause(),
-            takeClause: self.takeClause(),
-            skipClause: self.skipClause()
-        })
-                  .done(function (response) {
-                      self.songs(response.queryResult);
-                      self.totalCount(response.totalCount);
-                  })
-              .fail(function () {
-                  toastr.error(AppConstants.FAILED_MESSAGE);
-              });
+        crudAndFilter.orderBy(propertyName, self.entityType(), self.takeClause(), self.skipClause(),
+            self.orderByClause, self.songs, self.totalCount);
     };
 
     self.addNew = function () {
@@ -147,48 +118,23 @@ Admin.SongsViewModel = function () {
     };
 
     self.saveOrUpdate = function () {
-        var requestSaveData = {
-            type: "Song",
-            objectStringified: JSON.stringify({
-                Id: self.selectedSong.Id(),
-                Name: self.selectedSong.Name(),
-                Author: self.selectedSong.Author(),
-                DurationMin: self.selectedSong.DurationMin(),
-                MusicGenre: self.selectedSong.MusicGenre()
-            }),
-            orderByClause: self.orderByClause(),
-            takeClause: self.takeClause(),
-            skipClause: self.skipClause()
-        };
 
-        server.postData(appConfig.adminSaveOrOpdate, requestSaveData)
-            .done(function (response) {
-                self.songEditPanelDialog.dialog("close");
-                toastr.success(AppConstants.SAVE_SUCCESSFULL_MESSAGE);
-                self.songs(response);
-            })
-            .fail(function () {
-                toastr.error(AppConstants.SAVE_FAILED_MESSAGE);
-            });
+        var objectStringified = JSON.stringify({
+            Id: self.selectedSong.Id(),
+            Name: self.selectedSong.Name(),
+            Author: self.selectedSong.Author(),
+            DurationMin: self.selectedSong.DurationMin(),
+            MusicGenre: self.selectedSong.MusicGenre()
+        });
+
+        crudAndFilter.saveOrUpdate(self.entityType(), objectStringified, self.takeClause(),
+           self.skipClause(), self.orderByClause(), self.songs, self.totalCount, self.songEditPanelDialog);
+        
     };
 
     self.delete = function (selected) {
-        self.selectedSong.updateFromModel(selected);
-        var requestDeleteData = {
-            type: "Song",
-            objectId: self.selectedSong.Id(),
-            orderByClause: self.orderByClause(),
-            takeClause: self.takeClause(),
-            skipClause: self.skipClause()
-        };
-        var promise = server.postData(appConfig.adminDelete, requestDeleteData)
-            .done(function (response) {
-                toastr.success(AppConstants.DELETE_SUCCESSFULL_MESSAGE);
-                self.songs(response);
-            })
-            .fail(function () {
-                toastr.error(AppConstants.DELETE_FAILED_MESSAGE);
-            });
+        crudAndFilter.delete(self.entityType(),selected.Id,self.takeClause(),
+           self.skipClause(), self.orderByClause(), self.songs, self.totalCount);
     };
 
 };
@@ -230,7 +176,6 @@ Admin.SongsViewModel = function () {
     })
     .done(function (response) {
         vm.musicGenres(response[0]);
-        ko.applyBindings(vm);
     })
     .fail(function (message) {
 
@@ -243,6 +188,6 @@ Admin.SongsViewModel = function () {
     });
 
     vm.currentPage(1);
-
+    ko.applyBindings(vm);
 })();
 
