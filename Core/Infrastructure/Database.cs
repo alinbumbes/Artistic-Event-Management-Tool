@@ -142,21 +142,21 @@ namespace Core.Infrastructure
                     {
                         Name = "Nunta",
                         PricePerHour = 300,
-                        MinimumHoursDuration = 4
+                        MinimumDurationInHours = 4
                     };
                     session.Save(eventNunta);
                     var eventBotez = new EventType()
                     {
                         Name = "Botez",
                         PricePerHour = 150,
-                        MinimumHoursDuration = 3
+                        MinimumDurationInHours = 3
                     };
                     session.Save(eventBotez);
                     var eventConcertLive = new EventType()
                     {
                         Name = "Concert live",
                         PricePerHour = 500,
-                        MinimumHoursDuration = 1
+                        MinimumDurationInHours = 1
                     };
                     session.Save(eventConcertLive);
 

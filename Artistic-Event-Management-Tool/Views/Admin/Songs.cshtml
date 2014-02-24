@@ -6,48 +6,48 @@
 <div>
     <div>Songs</div>
 
-    <a class='btn btn-info btn-large' title="Add new" data-bind="click:addNew">AddNew</a>
+    <a class='btn btn-info btn-large' title="Add new" data-bind="click:entitiesPaginator.addNew">AddNew</a>
     <table>
         <thead>
             <tr>
-                <th><a class='btn btn-info' title="Name" data-bind="click:function () {orderBy('Name')}">Name</a></th>
-                <th><a class='btn btn-info' title="Author" data-bind="click:function () { orderBy('Author') }">Author</a></th>
-                <th><a class='btn btn-info' title="Duration in minutes" data-bind="click:function () {orderBy('DurationMin')}">Duration in minutes</a></th>
-                <th><a class='btn btn-info' title="Music genre" data-bind="click:function () {orderBy('MusicGenre.Name')}">Music genre</a></th>
+                <th><a class='btn btn-info' title="Name" data-bind="click:function () { entitiesPaginator.orderBy('Name') }">Name</a></th>
+                <th><a class='btn btn-info' title="Author" data-bind="click:function () { entitiesPaginator.orderBy('Author') }">Author</a></th>
+                <th><a class='btn btn-info' title="Duration in minutes" data-bind="click:function () { entitiesPaginator.orderBy('DurationMin') }">Duration in minutes</a></th>
+                <th><a class='btn btn-info' title="Music genre" data-bind="click:function () { entitiesPaginator.orderBy('MusicGenre.Name') }">Music genre</a></th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody data-bind="foreach: songs">
+        <tbody data-bind="foreach: entitiesPaginator.entities">
             <tr>
                 <td data-bind="text: Name"></td>
                 <td data-bind="text: Author"></td>
                 <td data-bind="text: DurationMin"></td>
                 <td data-bind="text: MusicGenre.Name"></td>
-                <td><a class='btn btn-info btn-large' title="Edit" data-bind="click:$parent.edit">Edit</a></td>
-                <td><a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.delete">Delete</a></td>
+                <td><a class='btn btn-info btn-large' title="Edit" data-bind="click:$parent.entitiesPaginator.edit">Edit</a></td>
+                <td><a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.entitiesPaginator.delete">Delete</a></td>
             </tr>
         </tbody>
     </table>
     <span>
-        <button class='btn btn-info btn-large' title="First page" data-bind="enable:canGoToFirstPage, click:goToFirstPage"><<</button>
-        <button class='btn btn-info btn-large' title="Back" data-bind="enable:canGoBack, click:goBack"><</button>
-        <span data-bind="text: currentPage"></span>
-        <button class='btn btn-info btn-large' title="Back" data-bind="enable:canGoForward, click:goForward">></button>
-        <button class='btn btn-info btn-large' title="Last page" data-bind="enable:canGoToLastPage, click:goToLastPage">>></button>
+        <button class='btn btn-info btn-large' title="First page" data-bind="enable:entitiesPaginator.canGoToFirstPage, click:entitiesPaginator.goToFirstPage"><<</button>
+        <button class='btn btn-info btn-large' title="Back" data-bind="enable:entitiesPaginator.canGoBack, click:entitiesPaginator.goBack"><</button>
+        <span data-bind="text: entitiesPaginator.currentPage"></span>
+        <button class='btn btn-info btn-large' title="Back" data-bind="enable:entitiesPaginator.canGoForward, click:entitiesPaginator.goForward">></button>
+        <button class='btn btn-info btn-large' title="Last page" data-bind="enable:entitiesPaginator.canGoToLastPage, click:entitiesPaginator.goToLastPage">>></button>
     </span>
     
 </div>
 
-<div id="songEditPanel" title="Song details">
+<div id="songEditPanel" title="Song edit panel">
     <label>Name</label>
-    <input data-bind="value:selectedSong.Name" />
+    <input data-bind="value:entitiesPaginator.selectedEntity.Name" />
     <label>Author</label>
-    <input data-bind="value:selectedSong.Author" />
+    <input data-bind="value:entitiesPaginator.selectedEntity.Author" />
     <label>Duration in minutes</label>
-    <input data-bind="value:selectedSong.DurationMin" />
+    <input data-bind="value:entitiesPaginator.selectedEntity.DurationMin" />
     <label>MusicGenre</label>
     <select data-bind="options: musicGenres,
                        optionsText: 'Name',
-                       value: selectedSong.MusicGenre,
-                       optionscaption: 'Choose music genre...' "></select>
+                       value: entitiesPaginator.selectedEntity.MusicGenre,
+                       optionsCaption: 'Choose music genre...' "></select>
 </div>

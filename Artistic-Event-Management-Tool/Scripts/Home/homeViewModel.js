@@ -9,8 +9,8 @@ Home.HomeViewModel = function() {
     var self = this;
 
     //observables
-    self.observable = ko.observable();
-    
+    self.eventTypes = ko.observable();
+    self.artisticEventOrder = new common.ArtisticEventOrder();
 
     //computed
 
@@ -21,5 +21,25 @@ Home.HomeViewModel = function() {
 (function() {
     //apply bindings
     var vm = new Home.HomeViewModel();
-    ko.applyBindings(vm);
+    ko.applyBindings(ko.validatedObservable(vm));
+    
+
+    server.getDataWithoutStringify(appConfig.adminGetAllEntitiesOfTypesUrl,
+   {
+       entityTypesComaSeparated: "EventType",
+       orderByClausesComaSeparated: "Name"
+   })
+   .done(function (response) {
+       vm.eventTypes(response[0]);
+   })
+   .fail(function (message) {
+
+       var errorText = AppConstants.FAILED_MESSAGE;
+       if (message) {
+           errorText += message;
+       }
+
+       toastr.error(errorText);
+   });
+
 })();

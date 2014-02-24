@@ -3,6 +3,43 @@
 }
 @Html.Partial("_AdminNav")
 <div>
-    Event Types
+    <div>Event Types</div>
 
+    <a class='btn btn-info btn-large' title="Add new" data-bind="click:entitiesPaginator.addNew">AddNew</a>
+    <table>
+        <thead>
+            <tr>
+                <th><a class='btn btn-info' title="Name" data-bind="click:function () { entitiesPaginator.orderBy('Name') }">Name</a></th>
+                <th><a class='btn btn-info' title="Price per hour" data-bind="click:function () { entitiesPaginator.orderBy('PricePerHour') }">Price(per hour) in lei</a></th>
+                <th><a class='btn btn-info' title="Minimum duration in hours" data-bind="click:function () { entitiesPaginator.orderBy('MinimumDurationInHours') }">Minimum duration(in hours)</a></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: entitiesPaginator.entities">
+            <tr>
+                <td data-bind="text: Name"></td>
+                <td data-bind="text: PricePerHour"></td>
+                <td data-bind="text: MinimumDurationInHours"></td>
+                <td><a class='btn btn-info btn-large' title="Edit" data-bind="click:$parent.entitiesPaginator.edit">Edit</a></td>
+                <td><a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.entitiesPaginator.delete">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <span>
+        <button class='btn btn-info btn-large' title="First page" data-bind="enable:entitiesPaginator.canGoToFirstPage, click:entitiesPaginator.goToFirstPage"><<</button>
+        <button class='btn btn-info btn-large' title="Back" data-bind="enable:entitiesPaginator.canGoBack, click:entitiesPaginator.goBack"><</button>
+        <span data-bind="text: entitiesPaginator.currentPage"></span>
+        <button class='btn btn-info btn-large' title="Back" data-bind="enable:entitiesPaginator.canGoForward, click:entitiesPaginator.goForward">></button>
+        <button class='btn btn-info btn-large' title="Last page" data-bind="enable:entitiesPaginator.canGoToLastPage, click:entitiesPaginator.goToLastPage">>></button>
+    </span>
+
+</div>
+
+<div id="eventTypeEditPanel" title="Event type edit panel">
+    <label>Name</label>
+    <input data-bind="value:entitiesPaginator.selectedEntity.Name" />
+    <label>Price(per hour) in lei</label>
+    <input data-bind="value:entitiesPaginator.selectedEntity.PricePerHour" />
+    <label>Minimum duration(in hours)</label>
+    <input data-bind="value:entitiesPaginator.selectedEntity.MinimumDurationInHours" />
 </div>

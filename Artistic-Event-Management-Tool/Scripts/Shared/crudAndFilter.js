@@ -89,3 +89,28 @@ crudAndFilter.delete = function (entityType, entityId, takeClause, skipClause, o
         toastr.error(AppConstants.DELETE_FAILED_MESSAGE);
     });
 };
+
+crudAndFilter.getEditDialog = function(jQuerySelectorString, width, height, callBackSave) {
+    return $(jQuerySelectorString).dialog({
+        width: width,
+        height: height,
+        autoOpen: false,
+        modal: true,
+        open: function() {
+            $(this)
+                .parent()
+                .find(".ui-dialog-titlebar-close")
+                .hide();
+        },
+        buttons: [{
+            text: "Save",
+            click: callBackSave 
+        },
+         {
+             text: "Cancel",
+             click: function () {
+                 $(this).dialog("close");
+             }
+         }]
+    });
+}

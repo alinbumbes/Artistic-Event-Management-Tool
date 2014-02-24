@@ -17,6 +17,9 @@ namespace Core.Domain.Validation
 
             RuleFor(eventType => eventType.PricePerHour)
                 .GreaterThan(0);
+
+            RuleFor(eventType => eventType.MinimumDurationInHours)
+                .GreaterThan(0);
         }
     }
 }
