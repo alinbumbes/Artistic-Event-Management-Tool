@@ -35,7 +35,7 @@ Admin.MusicGenresViewModel = function () {
     self.entitiesPaginator.entityType("MusicGenre");
     self.entitiesPaginator.selectedEntity = new Admin.MusicGenre();
     self.entitiesPaginator.entityEditPanelDialog =
-        crudAndFilter.getEditDialog("#musicGenreEditPanel", 500, 500,
+        crudAndFilter.getEditDialog("#musicGenreEditPanel", 500, 300,
             function () {
                 self.saveOrUpdate();
             });

@@ -3,38 +3,6 @@
 //attach namespace
 var Admin = Admin || {};
 
-Admin.Song = function () {
-    var self = this;
-    //observables
-    self.Id = ko.observable(null);
-    self.Name = ko.observable(null).extend({ required: true });
-    self.Author = ko.observable(null);
-    self.DurationMin = ko.observable(null).extend({
-        required: true,
-        min: 0
-    });
-    self.MusicGenre = ko.observable(null).extend({ required: true });
-
-    //computed
-
-    //methods
-    self.updateFromModel = function (model) {
-        if (!model) {
-            model = {};
-        }
-
-        self.Id(model.Id || null);
-        self.Name(model.Name || null);
-        self.Author(model.Author || null);
-        self.DurationMin(model.DurationMin || null);
-        self.MusicGenre(model.MusicGenre || null);
-
-    };
-
-};
-
-
-
 //View models should end in ViewModel
 Admin.SongsViewModel = function () {
     //make vm closure accesible everywhere within this scope
@@ -43,7 +11,7 @@ Admin.SongsViewModel = function () {
     self.entitiesPaginator = new EntitiesPaginator();
 
     self.entitiesPaginator.entityType("Song");
-    self.entitiesPaginator.selectedEntity = new Admin.Song();
+    self.entitiesPaginator.selectedEntity = new common.Song();
     self.entitiesPaginator.entityEditPanelDialog =
         crudAndFilter.getEditDialog("#songEditPanel", 500, 500,
             function () {

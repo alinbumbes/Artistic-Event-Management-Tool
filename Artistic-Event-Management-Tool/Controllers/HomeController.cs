@@ -26,5 +26,10 @@ namespace Web.Controllers
             return View();
         }
 
+        public JsonResult OrderEvent(string data)
+        {
+            return Json(true);
+        }
+
     }
 }

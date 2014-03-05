@@ -23,13 +23,8 @@
             </tr>
         </tbody>
     </table>
-    <span>
-        <button class='btn btn-info btn-large' title="First page" data-bind="enable:entitiesPaginator.canGoToFirstPage, click:entitiesPaginator.goToFirstPage"><<</button>
-        <button class='btn btn-info btn-large' title="Back" data-bind="enable:entitiesPaginator.canGoBack, click:entitiesPaginator.goBack"><</button>
-        <span data-bind="text: entitiesPaginator.currentPage"></span>
-        <button class='btn btn-info btn-large' title="Back" data-bind="enable:entitiesPaginator.canGoForward, click:entitiesPaginator.goForward">></button>
-        <button class='btn btn-info btn-large' title="Last page" data-bind="enable:entitiesPaginator.canGoToLastPage, click:entitiesPaginator.goToLastPage">>></button>
-    </span>
+
+    @{ Html.RenderPartial("~/Views/Partials/_GridNavigationControls.cshtml"); }
 
 </div>
 

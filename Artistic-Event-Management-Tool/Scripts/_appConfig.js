@@ -2,6 +2,9 @@
 
 appConfig = {};
 
+//HOME SECTION
+appConfig.homeOrderEvent = urlFormater("Home/OrderEvent");
+
 //ADMIN SECTION
 appConfig.adminGetAllEntitiesOfTypesUrl = urlFormater("Admin/GetAllOfManyTypes");
 appConfig.adminGetFilteredUrl = urlFormater("Admin/GetFiltered");
