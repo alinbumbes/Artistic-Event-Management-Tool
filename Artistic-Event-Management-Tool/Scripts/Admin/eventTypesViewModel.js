@@ -6,13 +6,13 @@ var Admin = Admin || {};
 Admin.EventType = function () {
     var self = this;
     //observables
-    self.Id = ko.observable(null);
-    self.Name = ko.observable(null).extend({ required: true });
-    self.PricePerHour = ko.observable(null).extend({
+    self.Id = ko.observable();
+    self.Name = ko.observable().extend({ required: true });
+    self.PricePerHour = ko.observable().extend({
         required: true,
         min: 0
     });
-    self.MinimumDurationInHours = ko.observable(null).extend({
+    self.MinimumDurationInHours = ko.observable().extend({
         required: true,
         min: 0
     });

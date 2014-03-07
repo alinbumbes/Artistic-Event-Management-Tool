@@ -25,7 +25,22 @@ Home.HomeViewModel = function() {
 
     //methods
     self.orderEvent = function () {
-        server.postData(appConfig.homeOrderEvent, self.artisticEventOrder)
+        var eventOrderData = {            
+            EventType: self.artisticEventOrder.EventType(),
+            EventDateString: self.artisticEventOrder.EventDate(),
+            EventStartHour: self.artisticEventOrder.EventStartHour().Value,
+            EventEndHour: self.artisticEventOrder.EventEndHour() ?
+                self.artisticEventOrder.EventEndHour().Value
+                : null,
+            EventLocation: self.artisticEventOrder.EventLocation(),
+            SelectedPlaylistSongs: self.artisticEventOrder.SelectedPlaylistSongs()
+        };
+
+        var postData = {
+            eventOrderDataStringified: JSON.stringify(eventOrderData)
+        };
+
+        server.postData(appConfig.homeOrderEvent, postData)
             .done(function(x) {
                 toastr.success(AppConstants.SUCCESSFULL_ORDER);
             })

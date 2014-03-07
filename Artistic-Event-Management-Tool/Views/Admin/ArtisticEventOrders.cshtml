@@ -1,0 +1,68 @@
+﻿@section scripts{
+    @Scripts.Render("~/Scripts/Admin/artisticEventOrdersViewModel.js")
+}
+
+@Html.Partial("_AdminNav")
+<div>
+    <div>Artistic event orders</div>
+    <table>
+        <thead>
+            <tr>
+                <th><a class='btn btn-info' title="Type" data-bind="click:function () { entitiesPaginator.orderBy('EventType.Name') }">Type</a></th>
+                <th><a class='btn btn-info' title="Date" data-bind="click:function () { entitiesPaginator.orderBy('EventDate') }">Date</a></th>
+                <th><a class='btn btn-info' title="Start hour" data-bind="click:function () { entitiesPaginator.orderBy('EventStartHour') }">Start hour</a></th>
+                <th><a class='btn btn-info' title="End hour" data-bind="click:function () { entitiesPaginator.orderBy('EventEndHour') }">End hour</a></th>
+                <th><a class='btn btn-info' title="Location" data-bind="click:function () { entitiesPaginator.orderBy('EventLocation') }">Location</a></th>
+                <th><a class='btn btn-info' title="Nr of playlist songs selected">Nr of playlist songs</a></th>
+                <th><a class='btn btn-info' title="Was performed" data-bind="click:function () { entitiesPaginator.orderBy('WasPerformed') }">Was performed</a></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: entitiesPaginator.entities">
+            <tr>
+                <td data-bind="text: EventType.Name"></td>
+                <td data-bind="text: EventDate"></td>
+                <td data-bind="text: EventStartHour"></td>
+                <td data-bind="text: EventEndHour"></td>
+                <td data-bind="text: EventLocation"></td>
+                <td data-bind="text: SelectedPlaylistSongs.length"></td>
+                <td data-bind="text: WasPerformed"></td>
+                <td><a class='btn btn-info btn-large' title="Show details" data-bind="click:$parent.entitiesPaginator.edit">Show details</a></td>
+                <td><a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.markEventPerformed">Mark as performed!</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    @{ Html.RenderPartial("~/Views/Partials/_GridNavigationControls.cshtml"); }
+
+</div>
+
+<div id="artisticEventOrderDetailsPanel" title="Artistic event order details panel">
+    <div>
+        <span>Type: </span>
+        <span data-bind="text:entitiesPaginator.selectedEntity.EventType.Name"></span>
+    </div>
+    <div>
+        <span>Date: </span>
+        <span data-bind="text:entitiesPaginator.selectedEntity.EventDate"></span>
+    </div>
+    <div>
+        <span>Start hour: </span>
+        <span data-bind="text:entitiesPaginator.selectedEntity.EventStartHour"></span>
+    </div>
+    <div>
+        <span>End hour: </span>
+        <span data-bind="text:entitiesPaginator.selectedEntity.EventEndHour"></span>
+    </div>
+    <div>
+        <span>Location: </span>
+        <span data-bind="text:entitiesPaginator.selectedEntity.EventLocation"></span>
+    </div>
+    <div data-bind="foreach: entitiesPaginator.selectedEntity.SelectedPlaylistSongs">
+        <div data-bind="text: Name"></div>
+        <div data-bind="text: Author"></div>
+        <div data-bind="text: DurationMin"></div>
+        <div data-bind="text: MusicGenre.Name"></div>
+    </div>
+
+</div>

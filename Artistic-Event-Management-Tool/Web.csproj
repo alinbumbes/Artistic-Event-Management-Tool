@@ -166,6 +166,7 @@
     <Content Include="Content\toastr\toastr.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Admin\artisticEventOrdersViewModel.js" />
     <Content Include="Scripts\Shared\common.js" />
     <Content Include="Scripts\Shared\constants.js" />
     <Content Include="Scripts\Admin\musicGenresViewModel.js" />
@@ -248,6 +249,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Partials\_EventOrderDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\ArtisticEventOrders.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

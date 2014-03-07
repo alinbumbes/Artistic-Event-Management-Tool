@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Core.Domain;
 using Core.Domain.Validation;
+using Newtonsoft.Json;
 using NHibernate;
 using NHibernate.Linq;
 
@@ -26,9 +27,20 @@ namespace Web.Controllers
             return View();
         }
 
-        public JsonResult OrderEvent(string data)
+        [HttpPost]
+        public JsonResult OrderEvent(string eventOrderDataStringified)
         {
-            return Json(true);
+           var saveSuccessfull =  base.SaveOrOpdate("ArtisticEventOrder", eventOrderDataStringified);
+
+            if (saveSuccessfull)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+            
         }
 
     }

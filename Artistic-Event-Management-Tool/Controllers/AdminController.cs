@@ -34,6 +34,14 @@ namespace Web.Controllers
             return View();
         }
 
+
+        public ActionResult ArtisticEventOrders()
+        {
+            return View();
+        }
+        
+
+
         public new JsonResult GetAllOfManyTypes(string entityTypesComaSeparated, string orderByClausesComaSeparated)
         {
             var allEntitiesOfRequestedTypes = base.GetAllOfManyTypes(entityTypesComaSeparated, orderByClausesComaSeparated);

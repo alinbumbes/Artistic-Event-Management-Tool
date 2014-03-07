@@ -90,7 +90,11 @@ crudAndFilter.delete = function (entityType, entityId, takeClause, skipClause, o
     });
 };
 
-crudAndFilter.getEditDialog = function(jQuerySelectorString, width, height, callBackSave) {
+crudAndFilter.getEditDialog = function(jQuerySelectorString, width, height, callBackSave,textSaveButton) {
+    if (!textSaveButton) {
+        textSaveButton = "Save";
+    }
+    
     return $(jQuerySelectorString).dialog({
         width: width,
         height: height,
@@ -103,7 +107,7 @@ crudAndFilter.getEditDialog = function(jQuerySelectorString, width, height, call
                 .hide();
         },
         buttons: [{
-            text: "Save",
+            text: textSaveButton,
             click: callBackSave 
         },
          {

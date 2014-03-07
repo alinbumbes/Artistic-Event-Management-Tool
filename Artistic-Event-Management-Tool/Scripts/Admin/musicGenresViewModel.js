@@ -6,8 +6,8 @@ var Admin = Admin || {};
 Admin.MusicGenre = function () {
     var self = this;
     //observables
-    self.Id = ko.observable(null);
-    self.Name = ko.observable(null).extend({ required: true });
+    self.Id = ko.observable();
+    self.Name = ko.observable().extend({ required: true });
     self.Description = ko.observable(null);
 
     //computed

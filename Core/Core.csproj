@@ -55,9 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\ArtisticEvent.cs" />
+    <Compile Include="Domain\ArtisticEventOrder.cs" />
     <Compile Include="Domain\EventType.cs" />
-    <Compile Include="Domain\Mappings\ArtisticEventMap.cs" />
+    <Compile Include="Domain\Mappings\ArtisticEventOrderMap.cs" />
     <Compile Include="Domain\Mappings\EventTypeMap.cs" />
     <Compile Include="Domain\Mappings\MusicGenreMap.cs" />
     <Compile Include="Domain\Mappings\SongMap.cs" />
@@ -65,8 +65,8 @@
     <Compile Include="Domain\MusicGenre.cs" />
     <Compile Include="Domain\Song.cs" />
     <Compile Include="Domain\User.cs" />
-    <Compile Include="Domain\Validation\ArtisticEventValidator.cs" />
     <Compile Include="Domain\Validation\DefaultValidator.cs" />
+    <Compile Include="Domain\Validation\ArtisticEventOrderValidator.cs" />
     <Compile Include="Domain\Validation\EventTypeValidator.cs" />
     <Compile Include="Domain\Validation\MusicGenreValidator.cs" />
     <Compile Include="Domain\Validation\SongValidator.cs" />
