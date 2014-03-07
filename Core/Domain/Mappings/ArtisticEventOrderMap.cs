@@ -13,6 +13,7 @@ namespace Core.Domain.Mappings
         {
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.EventDate);
+            Map(x => x.EventDateString);
             Map(x => x.EventStartHour);
             Map(x => x.EventEndHour);
             Map(x => x.EventLocation);
