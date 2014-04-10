@@ -102,7 +102,7 @@ namespace Web.Controllers
                 return false;
             }
 
-            //objectStringified = objectStringified.Replace("\"Id\":null,","\"Id\":-1,");
+            objectStringified = objectStringified.Replace("\"Id\":null,","\"Id\":0,");
             var objectSentFromClient = JsonConvert.DeserializeObject(objectStringified, AllCoreClasses.NameTypeMap[type]);
             if (objectSentFromClient == null)
             {
