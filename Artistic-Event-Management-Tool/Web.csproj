@@ -146,8 +146,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap3\bootstrap.min.js" />
+    <Content Include="Content\bootstrap3\less\bootstrap.css">
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap3\less\bootstrap.min.css">
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
+    <Content Include="Content\FontAwesome4\css\font-awesome.min.css" />
+    <Content Include="Content\FontAwesome4\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\img\vai.png" />
     <Content Include="Content\jqueryui\images\animated-overlay.gif" />
     <Content Include="Content\jqueryui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\jqueryui\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -163,7 +173,13 @@
     <Content Include="Content\jqueryui\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\jqueryui\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\jqueryui\jquery-ui.css" />
+    <Content Include="Content\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
     <Content Include="Content\toastr\toastr.css" />
+    <Content Include="Content\_mixins.css">
+      <DependentUpon>_mixins.less</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Admin\artisticEventOrdersViewModel.js" />
@@ -252,6 +268,62 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\ArtisticEventOrders.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap3\less\alerts.less" />
+    <Content Include="Content\bootstrap3\less\badges.less" />
+    <Content Include="Content\bootstrap3\less\bootstrap.less" />
+    <Content Include="Content\bootstrap3\less\breadcrumbs.less" />
+    <Content Include="Content\bootstrap3\less\button-groups.less" />
+    <Content Include="Content\bootstrap3\less\buttons.less" />
+    <Content Include="Content\bootstrap3\less\carousel.less" />
+    <Content Include="Content\bootstrap3\less\close.less" />
+    <Content Include="Content\bootstrap3\less\code.less" />
+    <Content Include="Content\bootstrap3\less\component-animations.less" />
+    <Content Include="Content\bootstrap3\less\dropdowns.less" />
+    <Content Include="Content\bootstrap3\less\forms.less" />
+    <Content Include="Content\bootstrap3\less\glyphicons.less" />
+    <Content Include="Content\bootstrap3\less\grid.less" />
+    <Content Include="Content\bootstrap3\less\input-groups.less" />
+    <Content Include="Content\bootstrap3\less\jumbotron.less" />
+    <Content Include="Content\bootstrap3\less\labels.less" />
+    <Content Include="Content\bootstrap3\less\list-group.less" />
+    <Content Include="Content\bootstrap3\less\media.less" />
+    <Content Include="Content\bootstrap3\less\mixins.less" />
+    <Content Include="Content\bootstrap3\less\modals.less" />
+    <Content Include="Content\bootstrap3\less\navbar.less" />
+    <Content Include="Content\bootstrap3\less\navs.less" />
+    <Content Include="Content\bootstrap3\less\normalize.less" />
+    <Content Include="Content\bootstrap3\less\pager.less" />
+    <Content Include="Content\bootstrap3\less\pagination.less" />
+    <Content Include="Content\bootstrap3\less\panels.less" />
+    <Content Include="Content\bootstrap3\less\popovers.less" />
+    <Content Include="Content\bootstrap3\less\print.less" />
+    <Content Include="Content\bootstrap3\less\progress-bars.less" />
+    <Content Include="Content\bootstrap3\less\responsive-utilities.less" />
+    <Content Include="Content\bootstrap3\less\scaffolding.less" />
+    <Content Include="Content\bootstrap3\less\tables.less" />
+    <Content Include="Content\bootstrap3\less\theme.less" />
+    <Content Include="Content\bootstrap3\less\thumbnails.less" />
+    <Content Include="Content\bootstrap3\less\tooltip.less" />
+    <Content Include="Content\bootstrap3\less\type.less" />
+    <Content Include="Content\bootstrap3\less\utilities.less" />
+    <Content Include="Content\bootstrap3\less\variables.less" />
+    <Content Include="Content\bootstrap3\less\wells.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\FontAwesome4\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\FontAwesome4\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\FontAwesome4\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\FontAwesome4\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\main.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\_colors.less" />
+    <Content Include="Content\_mixins.less" />
+    <Content Include="Content\_positioning.less" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
