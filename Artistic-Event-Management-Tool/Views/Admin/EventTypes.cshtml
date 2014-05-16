@@ -33,17 +33,37 @@
 
 </div>
 <div class="container">
+
     <div id="eventTypeEditPanel" title="Event type edit panel">
-        <div class="input-group mrg-down2">
-            <span class="input-group-addon">Name</span>
-            <input data-bind="value:entitiesPaginator.selectedEntity.Name" type="text" class="form-control" />
+
+        <div class="row mrg-down2">
+            <div class="col-lg-6">
+                <span>Name</span>
+            </div>
+            <div class="col-lg-6">
+                <input data-bind="value:entitiesPaginator.selectedEntity.Name" type="text" class="form-control" />
+            </div>
         </div>
 
-        <label>Name</label>
-        <input data-bind="value:entitiesPaginator.selectedEntity.Name" />
-        <label>Price(per hour) in lei</label>
-        <input data-bind="value:entitiesPaginator.selectedEntity.PricePerHour" />
-        <label>Minimum duration(in hours)</label>
-        <input data-bind="value:entitiesPaginator.selectedEntity.MinimumDurationInHours" />
+        
+        <div class="row mrg-down2">
+            <div class="col-lg-6">
+                <span>Price (per hour) in lei</span>
+            </div>
+            <div class="col-lg-6">
+                <input data-bind="value:entitiesPaginator.selectedEntity.PricePerHour" type="text" placeholder="" class="form-control" />
+            </div>
+        </div>
+        
+  
+        <div class="row mrg-down2">
+            <div class="col-lg-6">
+                <span>Minimum duration(in hours)</span>
+            </div>
+            <div class="col-lg-6">
+                <input data-bind="value:entitiesPaginator.selectedEntity.MinimumDurationInHours" placeholder="Minimum duration(in hours)" type="text" class="form-control" />
+            </div>
+        </div>
+
     </div>
 </div>
