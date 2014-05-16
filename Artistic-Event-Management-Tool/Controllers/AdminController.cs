@@ -19,7 +19,7 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View("ArtisticEventOrders");
         }
 
         public ActionResult EventTypes()

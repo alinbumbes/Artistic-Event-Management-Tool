@@ -36,6 +36,7 @@ common.ArtisticEventOrder = function () {
     self.Id = ko.observable();
     self.EventType = ko.observable().extend({ required: true });
     self.EventDate = ko.observable().extend({ required: true });
+    self.EventDateString = ko.observable();
     self.EventStartHour = ko.observable().extend({ required: true });
     self.EventEndHour = ko.observable();
     self.EventLocation = ko.observable();
@@ -94,10 +95,11 @@ common.ArtisticEventOrder = function () {
         if (!model) {
             model = {};
         }
-
+        
         self.Id(model.Id || null);
-        self.Name(model.EventType || null);
+        self.EventType(model.EventType || null);
         self.EventDate(model.EventDate || null);
+        self.EventDateString(model.EventDateString || null);
         self.EventStartHour(model.EventStartHour || null);
         self.EventEndHour(model.EventEndHour || null);
         self.EventLocation(model.EventLocation || null);

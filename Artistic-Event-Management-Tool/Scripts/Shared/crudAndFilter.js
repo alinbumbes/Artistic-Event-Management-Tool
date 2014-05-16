@@ -94,6 +94,22 @@ crudAndFilter.getEditDialog = function(jQuerySelectorString, width, height, call
     if (!textSaveButton) {
         textSaveButton = "Save";
     }
+
+    var buttonsArray = [];
+
+    if (callBackSave) {
+        buttonsArray.push({
+            text: textSaveButton,
+            click: callBackSave
+        });
+    }
+    
+    buttonsArray.push({
+        text: "Cancel",
+        click: function () {
+            $(this).dialog("close");
+        }
+    });
     
     return $(jQuerySelectorString).dialog({
         width: width,
@@ -106,15 +122,6 @@ crudAndFilter.getEditDialog = function(jQuerySelectorString, width, height, call
                 .find(".ui-dialog-titlebar-close")
                 .hide();
         },
-        buttons: [{
-            text: textSaveButton,
-            click: callBackSave 
-        },
-         {
-             text: "Cancel",
-             click: function () {
-                 $(this).dialog("close");
-             }
-         }]
+        buttons: buttonsArray
     });
 }

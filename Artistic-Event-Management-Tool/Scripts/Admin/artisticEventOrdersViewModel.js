@@ -15,10 +15,7 @@ Admin.ArtisticEventOrdersViewModel = function () {
         
     self.entitiesPaginator.selectedEntity = new common.ArtisticEventOrder();
     self.entitiesPaginator.entityEditPanelDialog =
-        crudAndFilter.getEditDialog("#artisticEventOrderDetailsPanel", 500, 500,
-            function () {
-                self.markEventPerformed();
-            }, "Mark as performed!");
+        crudAndFilter.getEditDialog("#artisticEventOrderDetailsPanel", 800, 400);
 
 
     //observables
@@ -26,12 +23,6 @@ Admin.ArtisticEventOrdersViewModel = function () {
 
 
     //methods
-    self.showDetails = function (selected) {
-        self.selectedEntity.updateFromModel(selected);
-        self.entityEditPanelDialog.dialog("open");
-    };
-
-
     self.markEventPerformed = function (selected) {
 
         server.postData(appConfig.adminSetArtisticEventOrderWasPerformedUrl,
