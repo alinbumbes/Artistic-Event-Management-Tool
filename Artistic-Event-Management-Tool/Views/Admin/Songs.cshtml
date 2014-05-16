@@ -1,13 +1,15 @@
 ﻿@section scripts{
     @Scripts.Render("~/Scripts/Admin/songsViewModel.js")
 }
+<div class="container">
+    @Html.Partial("_AdminNav")
+</div>
 
-@Html.Partial("_AdminNav")
-<div>
-    <div>Songs</div>
+<div class="container">
+    <h2 class="font-thin">Songs</h2>
 
     <a class='btn btn-info btn-large' title="Add new" data-bind="click:entitiesPaginator.addNew">AddNew</a>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th><a class='btn btn-info' title="Name" data-bind="click:function () { entitiesPaginator.orderBy('Name') }">Name</a></th>

@@ -1,11 +1,13 @@
 ﻿@section scripts{
     @Scripts.Render("~/Scripts/Admin/artisticEventOrdersViewModel.js")
 }
+<div class="container">
+    @Html.Partial("_AdminNav")
+</div>
 
-@Html.Partial("_AdminNav")
-<div>
+<div class="container">
     <div>Artistic event orders</div>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th><a class='btn btn-info' title="Type" data-bind="click:function () { entitiesPaginator.orderBy('EventType.Name') }">Type</a></th>

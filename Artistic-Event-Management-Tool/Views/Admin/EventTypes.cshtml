@@ -1,12 +1,15 @@
 ﻿@section scripts{
-   @Scripts.Render("~/Scripts/Admin/eventTypesViewModel.js")
+    @Scripts.Render("~/Scripts/Admin/eventTypesViewModel.js")
 }
-@Html.Partial("_AdminNav")
-<div>
+<div class="container mrg-down4">
+    @Html.Partial("_AdminNav")
+</div>
+
+<div class="container">
     <div>Event Types</div>
 
     <a class='btn btn-info btn-large' title="Add new" data-bind="click:entitiesPaginator.addNew">AddNew</a>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th><a class='btn btn-info' title="Name" data-bind="click:function () { entitiesPaginator.orderBy('Name') }">Name</a></th>
@@ -25,16 +28,22 @@
             </tr>
         </tbody>
     </table>
-    
-    @{ Html.RenderPartial("~/Views/Partials/_GridNavigationControls.cshtml"); }
-    
-</div>
 
-<div id="eventTypeEditPanel" title="Event type edit panel">
-    <label>Name</label>
-    <input data-bind="value:entitiesPaginator.selectedEntity.Name" />
-    <label>Price(per hour) in lei</label>
-    <input data-bind="value:entitiesPaginator.selectedEntity.PricePerHour" />
-    <label>Minimum duration(in hours)</label>
-    <input data-bind="value:entitiesPaginator.selectedEntity.MinimumDurationInHours" />
+    @{ Html.RenderPartial("~/Views/Partials/_GridNavigationControls.cshtml"); }
+
+</div>
+<div class="container">
+    <div id="eventTypeEditPanel" title="Event type edit panel">
+        <div class="input-group mrg-down2">
+            <span class="input-group-addon">Name</span>
+            <input data-bind="value:entitiesPaginator.selectedEntity.Name" type="text" class="form-control" />
+        </div>
+
+        <label>Name</label>
+        <input data-bind="value:entitiesPaginator.selectedEntity.Name" />
+        <label>Price(per hour) in lei</label>
+        <input data-bind="value:entitiesPaginator.selectedEntity.PricePerHour" />
+        <label>Minimum duration(in hours)</label>
+        <input data-bind="value:entitiesPaginator.selectedEntity.MinimumDurationInHours" />
+    </div>
 </div>
