@@ -11,6 +11,8 @@ AppConstants.DELETE_FAILED_MESSAGE = "Delete failed";
 
 AppConstants.SUCCESSFULL_ORDER = "The order was successfully placed";
 
+AppConstants.MARK_AS_PERFORMED = "Marked as performed!";
+
 
 AppConstants.hoursAll = [
 {

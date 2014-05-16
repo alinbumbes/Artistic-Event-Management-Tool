@@ -40,7 +40,7 @@ Home.HomeViewModel = function() {
             eventOrderDataStringified: JSON.stringify(eventOrderData)
         };
 
-        server.postData(appConfig.homeOrderEvent, postData)
+        server.postData(appConfig.homeOrderEventUrl, postData)
             .done(function(x) {
                 toastr.success(AppConstants.SUCCESSFULL_ORDER);
             })

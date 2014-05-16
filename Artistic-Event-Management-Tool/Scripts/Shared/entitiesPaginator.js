@@ -20,7 +20,11 @@ EntitiesPaginator = function () {
     });
 
     self.lastPage = ko.computed(function () {
-        return Math.round(self.totalCount() / self.takeClause());
+        var lastPage = Math.round(self.totalCount() / self.takeClause());
+        if (lastPage == 0) {
+            lastPage++;
+        }
+        return lastPage;
     });
 
     self.canGoToFirstPage = ko.computed(function () {

@@ -11,6 +11,8 @@ Admin.ArtisticEventOrdersViewModel = function () {
     self.entitiesPaginator = new EntitiesPaginator();
 
     self.entitiesPaginator.entityType("ArtisticEventOrder");
+    self.entitiesPaginator.orderByClause("EventDate desc");
+        
     self.entitiesPaginator.selectedEntity = new common.ArtisticEventOrder();
     self.entitiesPaginator.entityEditPanelDialog =
         crudAndFilter.getEditDialog("#artisticEventOrderDetailsPanel", 500, 500,
@@ -28,10 +30,22 @@ Admin.ArtisticEventOrdersViewModel = function () {
         self.selectedEntity.updateFromModel(selected);
         self.entityEditPanelDialog.dialog("open");
     };
-    
+
 
     self.markEventPerformed = function (selected) {
-        
+
+        server.postData(appConfig.adminSetArtisticEventOrderWasPerformedUrl,
+        {
+            artisticEventOrderId: selected.Id
+        })
+        .done(function (response) {
+            self.entitiesPaginator.entities(response);
+            self.entitiesPaginator.currentPage(1);
+            toastr.success(AppConstants.MARK_AS_PERFORMED);
+        })
+        .fail(function () {
+            toastr.error(AppConstants.FAILED_MESSAGE);
+        });
     };
 
 };
@@ -43,25 +57,5 @@ Admin.ArtisticEventOrdersViewModel = function () {
     ko.applyBindings(ko.validatedObservable(vm));
 
     vm.entitiesPaginator.currentPage(1);
-
-    server.getDataWithoutStringify(appConfig.adminGetAllEntitiesOfTypesUrl,
-    {
-        entityTypesComaSeparated: "ArtisticEventOrder",
-        orderByClausesComaSeparated: "EventDate"
-    })
-    .done(function (response) {
-        vm.artisticEventOrders(response[0]);
-    })
-    .fail(function (message) {
-
-        var errorText = AppConstants.FAILED_MESSAGE;
-        if (message) {
-            errorText += message;
-        }
-
-        toastr.error(errorText);
-    });
-
-
 })();
 

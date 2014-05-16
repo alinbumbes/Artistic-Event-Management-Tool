@@ -55,7 +55,7 @@ crudAndFilter.saveOrUpdate = function (entityType, objectStringified, takeClause
         orderByClause: orderByClause
     };
 
-    server.postData(appConfig.adminSaveOrOpdate, requestSaveData)
+    server.postData(appConfig.adminSaveOrOpdateUrl, requestSaveData)
         .done(function(response) {
             editPanelDialog.dialog("close");
             

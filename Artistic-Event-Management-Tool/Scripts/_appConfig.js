@@ -3,10 +3,11 @@
 appConfig = {};
 
 //HOME SECTION
-appConfig.homeOrderEvent = urlFormater("Home/OrderEvent");
+appConfig.homeOrderEventUrl = urlFormater("Home/OrderEvent");
 
 //ADMIN SECTION
 appConfig.adminGetAllEntitiesOfTypesUrl = urlFormater("Admin/GetAllOfManyTypes");
 appConfig.adminGetFilteredUrl = urlFormater("Admin/GetFiltered");
-appConfig.adminSaveOrOpdate = urlFormater("Admin/SaveOrOpdate");
+appConfig.adminSaveOrOpdateUrl = urlFormater("Admin/SaveOrOpdate");
+appConfig.adminSetArtisticEventOrderWasPerformedUrl = urlFormater("Admin/SetArtisticEventOrderWasPerformed");
 appConfig.adminDelete = urlFormater("Admin/Delete");

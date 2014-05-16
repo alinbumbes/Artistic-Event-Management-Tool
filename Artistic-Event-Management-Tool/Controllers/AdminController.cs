@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Core.Domain;
 using Core.Domain.Validation;
+using Microsoft.Ajax.Utilities;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace Web.Controllers
 {
@@ -94,7 +97,22 @@ namespace Web.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        
+
+        public ActionResult SetArtisticEventOrderWasPerformed(long artisticEventOrderId)
+        {
+            var artisticEventOrder = Session.Get<ArtisticEventOrder>(artisticEventOrderId);
+            artisticEventOrder.WasPerformed = true;
+
+            using (var tx = Session.BeginTransaction())
+            {
+                Session.SaveOrUpdate(artisticEventOrder);
+                tx.Commit();
+            }
+
+            var allArtisticEventOrders = Session.Query<ArtisticEventOrder>().OrderByDescending(x => x.EventDate).ToList();
+            return Json(allArtisticEventOrders);
+        }
+
 
 
     }
