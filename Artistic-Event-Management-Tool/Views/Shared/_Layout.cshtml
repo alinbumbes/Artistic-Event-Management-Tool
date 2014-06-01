@@ -5,14 +5,12 @@
     <title>@ViewBag.Title - Artistic Event Management Tool</title>
     <meta name="viewport" content="width=device-width" />
 
-    @*<link href="~/Content/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="~/Content/bootstrap/bootstrap-responsive.css" rel="stylesheet" />*@
     <link href="~/Content/bootstrap3/less/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/FontAwesome4/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/main.css" rel="stylesheet" />
     <link href="~/Content/toastr/toastr.css" rel="stylesheet" />
     <link href="~/Content/jqueryui/jquery-ui.css" rel="stylesheet" />
-    @*<link href="~/Content/Site.css" rel="stylesheet" />*@
+
 </head>
 <body>
     <header>
@@ -20,59 +18,35 @@
         <div class="container">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-
-                            <i class="fa fa-bars"></i>
-
-                        </button>
-                        <a class="navbar-brand pad-2 mrg-0" href="#">
-                            <img src="~/Content/img/vai.png" alt="Artistic Event Management System" />
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <i class="fa fa-bars"></i> </button>
+                        <a class="navbar-brand pad-2 mrg-0" href="">
+                            <img src="~/Content/img/logo.png" alt="Artistic Event Management System" />
                         </a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Comanda", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Administrare", "Index", "Admin")</li>
+                            <li>@Html.ActionLink("Despre", "About", "Home")</li>
                         </ul>
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Link</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
+                    </div>
+                </div>
             </nav>
         </div>
-
-
     </header>
 
-    <div id="body">
+    <div id="body">@RenderBody()</div>
 
-        @RenderBody()
 
-    </div>
     @*<footer>
-        <div class="container">
-            <p>&copy; @DateTime.Now.Year - Alin Bumbes gr 332</p>
-        </div>
-
-
-    </footer>*@
-
+            <div class="container">
+                <p>&copy; @DateTime.Now.Year - Alin Bumbes gr 332</p>
+            </div>
+        </footer>*@
 
     @* *********** URL FORMATER ************ *@
     <script type="text/javascript">
@@ -87,6 +61,7 @@
     </script>
 
     <script src="~/Scripts/Dependencies/jquery.min.js"></script>
+    <script src="~/Scripts/Dependencies/bootstrap.min.js"></script>
     <script src="~/Scripts/Dependencies/jquery-ui.js"></script>
     <script src="~/Scripts/Dependencies/toastr.js"></script>
     <script src="~/Scripts/Dependencies/knockout.min.js"></script>

@@ -1,64 +1,105 @@
-﻿<div>
-    <div data-bind="if:artisticEventOrder.EventType()">
-        <span>
-            <b>Detalii invitatie </b>
-            <b data-bind="text: artisticEventOrder.EventType().Name"></b>
-        </span>
-    </div>
-    <div data-bind="if:artisticEventOrder.ComputedPrice()">
-        <span>
-            <b>Pret in lei:</b>
-            <b data-bind="text: artisticEventOrder.ComputedPrice"></b>
-        </span>
-    </div>
-    <div data-bind="if:artisticEventOrder.EventStartHour()">
-        <span>
-            <b>Ora inceperii:</b>
-            <b data-bind="text: artisticEventOrder.EventStartHour().Name"></b>
-        </span>
-    </div>
-    <div data-bind="if:artisticEventOrder.EventEndHour()">
-        <span>
-            <b>Ora incheierii:</b>
-            <b data-bind="text: artisticEventOrder.EventEndHour().Name"></b>
-        </span>
-    </div>
-    <div data-bind="if:artisticEventOrder.ComputedDuration()">
-        <span>
-            <b>Durata:</b>
-            <b data-bind="text: artisticEventOrder.ComputedDuration"></b>
-            <b> ore</b>
-        </span>
-    </div>
-    <div data-bind="if:artisticEventOrder.SelectedPlaylistSongs().length>0">
-        <div>Playlist ales:</div>
-        <div>
-            <span>
-                <b data-bind="text: artisticEventOrder.SelectedPlaylistSongs().length"></b>
-                <span> cantece totalizand </span>
-                <b data-bind="text: artisticEventOrder.MinutesCovered"></b>
-                <span> minute </span>
-            </span>
+﻿<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="well">
+            <table class="table mrg-down0">
+
+
+                <tr data-bind="if:artisticEventOrder.EventType()">
+                    <td style="border-top:0px solid transparent;">Tip eveniment</td>
+                    <td style="border-top:0px solid transparent;" data-bind="text: artisticEventOrder.EventType().Name"></td>
+                </tr>
+
+
+                <tr data-bind="if:artisticEventOrder.ComputedPrice()">
+                    <td>Pret</td>
+                    <td data-bind="text: artisticEventOrder.ComputedPrice"></td>
+                </tr>
+
+
+                <tr data-bind="if:artisticEventOrder.EventStartHour()">
+                    <td>Ora inceperii</td>
+                    <td data-bind="text: artisticEventOrder.EventStartHour().Name"></td>
+                </tr>
+
+
+                <tr data-bind="if:artisticEventOrder.EventEndHour()">
+                    <td>Ora incheierii</td>
+                    <td data-bind="text: artisticEventOrder.EventEndHour().Name"></td>
+                </tr>
+
+
+                <tr data-bind="if:artisticEventOrder.ComputedDuration()">
+                    <td>Durata estimata</td>
+                    <td><span data-bind="text: artisticEventOrder.ComputedDuration"></span><span>h</span></td>
+                </tr>
+
+            </table>
+            @*<div data-bind="if:artisticEventOrder.EventType()">
+                    <span>
+                        <b>Detalii invitatie </b>
+                        <b data-bind="text: artisticEventOrder.EventType().Name"></b>
+                    </span>
+                </div>
+                <div data-bind="if:artisticEventOrder.ComputedPrice()">
+                    <span>
+                        <b>Pret in lei:</b>
+                        <b data-bind="text: artisticEventOrder.ComputedPrice"></b>
+                    </span>
+                </div>
+                <div data-bind="if:artisticEventOrder.EventStartHour()">
+                    <span>
+                        <b>Ora inceperii:</b>
+                        <b data-bind="text: artisticEventOrder.EventStartHour().Name"></b>
+                    </span>
+                </div>
+                <div data-bind="if:artisticEventOrder.EventEndHour()">
+                    <span>
+                        <b>Ora incheierii:</b>
+                        <b data-bind="text: artisticEventOrder.EventEndHour().Name"></b>
+                    </span>
+                </div>
+                <div data-bind="if:artisticEventOrder.ComputedDuration()">
+                    <span>
+                        <b>Durata:</b>
+                        <b data-bind="text: artisticEventOrder.ComputedDuration"></b>
+                        <b> ore</b>
+                    </span>
+                </div>*@
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th title="Name">Name</th>
-                    <th title="Author">Author</th>
-                    <th title="Duration in minutes">Duration in minutes</th>
-                    <th title="Music genre">Music genre</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: artisticEventOrder.SelectedPlaylistSongs">
-                <tr>
-                    <td data-bind="text: Name"></td>
-                    <td data-bind="text: Author"></td>
-                    <td data-bind="text: DurationMin"></td>
-                    <td data-bind="text: MusicGenre.Name"></td>
-                    <td><a class='btn btn-info btn-large' title="Sterge din playlist" data-bind="click:$parent.artisticEventOrder.removeFromPlaylist">Sterge din playlist</a></td>
-                </tr>
-            </tbody>
-        </table>
     </div>
+</div>
+
+
+<div data-bind="if:artisticEventOrder.SelectedPlaylistSongs().length>0">
+    <div class="alert alert-info">
+        <span>
+            <span>Playlistul ales contine </span>
+            <b data-bind="text: artisticEventOrder.SelectedPlaylistSongs().length"></b>
+            <span> cantece totalizand </span>
+            <b data-bind="text: artisticEventOrder.MinutesCovered"></b>
+            <span> minute </span>
+        </span>
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th title="Name">Name</th>
+                <th title="Author">Author</th>
+                <th title="Duration in minutes">Duration in minutes</th>
+                <th title="Music genre">Music genre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: artisticEventOrder.SelectedPlaylistSongs">
+            <tr>
+                <td data-bind="text: Name"></td>
+                <td data-bind="text: Author"></td>
+                <td data-bind="text: DurationMin"></td>
+                <td data-bind="text: MusicGenre.Name"></td>
+                <td><a class='btn btn-danger' title="Sterge din playlist" data-bind="click:$parent.artisticEventOrder.removeFromPlaylist"><i class="fa fa-trash-o"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

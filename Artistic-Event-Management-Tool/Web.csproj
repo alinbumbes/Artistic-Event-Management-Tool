@@ -146,7 +146,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap3\bootstrap.min.js" />
+    <Content Include="Scripts\Dependencies\bootstrap.min.js" />
     <Content Include="Content\bootstrap3\less\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
@@ -157,6 +157,7 @@
     <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\FontAwesome4\css\font-awesome.min.css" />
     <Content Include="Content\FontAwesome4\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\vai.png" />
     <Content Include="Content\jqueryui\images\animated-overlay.gif" />
     <Content Include="Content\jqueryui\images\ui-bg_flat_0_aaaaaa_40x100.png" />

@@ -5,107 +5,132 @@
     @Scripts.Render("~/Scripts/Home/homeViewModel.js")
 }
 
-<div class="container">
+<div class="container mrg-down6">
     <div class="row">
-        <h1 class="text-center text-danger">Artistic Event Management System</h1>
+        <h1 class="text-center text-danger mrg-top6 mrg-down6 pad-top6 pad-down6">Artistic Event Management System</h1>
     </div>
+    <ul class="nav nav-tabs mrg-top2">
+        <li class="active"><a href="" data-target="#1" data-toggle="tab">1. Creaza-ti evenimentul</a></li>
+        <li><a href="" data-target="#2" data-toggle="tab">2. Adauga playlist</a></li>
+        <li><a href="" data-target="#3" data-toggle="tab">3. Finalizeaza comanda</a></li>
+    </ul>
 
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 mrg-top6 mrg-down6">
-            <div class="input-group input-group-lg">
-                <span class="input-group-btn">
-                    <a class="btn btn-success"
-                       data-bind="enable:isValid(), click:orderEvent">Comandă!</a>
-                </span>
-                <select data-bind="options: eventTypes,
-                optionsText: 'Name',
-                value: artisticEventOrder.EventType,
-                optionsCaption: 'Alegeti tipul evenimentului' " class="form-control input-lg"></select>
-            </div>
-            @**@
-        </div>
-        <div class="col-lg-12">
-            @{ Html.RenderPartial("~/Views/Partials/_EventOrderDetails.cshtml"); }
-        </div>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="1">
 
-        <div class="col-lg-12">
-
-            <div data-bind="if:artisticEventOrder.EventType">
-                <div>Event type info</div>
-                <div>
-                    <span>Name: </span>
-                    <span data-bind="text:artisticEventOrder.EventType().Name" />
+            <div class="row">
+                <div class="col-lg-12 mrg-top6 mrg-down6">
+                    <select data-bind="options: eventTypes,
+                                       optionsText: 'Name',
+                                       value: artisticEventOrder.EventType,
+                                       optionsCaption: 'Alegeti tipul evenimentului' "
+                            class="form-control input-lg" style="background-color:beige;"></select>
                 </div>
-                <div>
-                    <span>Price(per hour) in lei: </span>
-                    <span data-bind="text:artisticEventOrder.EventType().PricePerHour" />
+
+                <div class="col-lg-6" data-bind="if:artisticEventOrder.EventType">
+                    <div class="well">
+
+                        <h3 class="text-primary mrg-top0 mrg-down3"><i class="fa fa-info-circle pad-right2"></i>Detalii despre tipul evenimentului</h3>
+
+                        <table class="table mrg-down0">
+                            <tr>
+                                <td>Nume</td>
+                                <td><span data-bind="text:artisticEventOrder.EventType().Name" /></td>
+                            </tr>
+                            <tr>
+                                <td>Pret</td>
+                                <td><span data-bind="text:artisticEventOrder.EventType().PricePerHour"></span><span>&nbsp;lei/h</span></td>
+                            </tr>
+                            <tr>
+                                <td>Durata minima</td>
+                                <td><span data-bind="text:artisticEventOrder.EventType().MinimumDurationInHours"></span><span>h</span></td>
+                            </tr>
+                        </table>
+
+                    </div>
                 </div>
-                <div>
-                    <span>Minimum duration(in hours) </span>
-                    <span data-bind="text:artisticEventOrder.EventType().MinimumDurationInHours" />
-                </div>
-            </div>
-
-        </div>
-    </div>
 
 
+                <div class="col-lg-6" data-bind="visible:artisticEventOrder.EventType">
+                    <div class="well">
+                        <h3 class="text-primary mrg-top0 mrg-down3"><i class="fa fa-file-text-o  pad-right2"></i>Adauga datele evenimentului tau</h3>
+                        <table class="table mrg-down0 table-noborders">
+                            <tr>
+                                <td>Data inceperii</td>
+                                <td><input id="datePickerEvent" data-bind="value: artisticEventOrder.EventDate" class="form-control" /></td>
+                            </tr>
 
-
-
-    <div data-bind="visible:artisticEventOrder.EventType">
-        <div>
-            <span>Data inceperii evenimentului:</span>
-            <input id="datePickerEvent" data-bind="value: artisticEventOrder.EventDate" />
-            <div>
-                <span>Ora inceperii:</span>
-                <select data-bind="options: hoursAll,
-                                    optionsText: function(hour) {
-                                        return hour.Name;
-                                    },
+                            <tr>
+                                <td>Ora inceperii</td>
+                                <td>
+                                    <select data-bind="options: hoursAll,
+                                    optionsText: function(hour) { return hour.Name; },
                                     value: artisticEventOrder.EventStartHour,
-                                    optionsCaption: 'Alegeti ora inceperii...' "></select>
+                                    optionsCaption: 'Alegeti ora inceperii...' " class="form-control"></select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Ora incheierii</td>
+                                <td>
+                                    <select data-bind="options: hoursAll,
+                                                       optionsText: function(hour) { return hour.Name; },
+                                                       value: artisticEventOrder.EventEndHour,
+                                                       optionsCaption: 'Alegeti ora incheierii...' " class="form-control"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>locatia evenimentului</td>
+                                <td><input data-bind="value:artisticEventOrder.EventLocation" class="form-control" /></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
             </div>
-            <div>
-                <span>Ora incheierii:</span>
-                <select data-bind="options: hoursAll,
-                                    optionsText: function(hour) {
-                                        return hour.Name;
-                                    },
-                                    value: artisticEventOrder.EventEndHour,
-                                    optionsCaption: 'Alegeti ora incheierii...' "></select>
+
+
+        </div>
+        <div class="tab-pane" id="2">
+            <div data-bind="visible:artisticEventOrder.EventType">
+                <div>
+                    <h3 class="mrg-down6 mrg-top6">Optional, alege melodii pentru playlist</h3>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th><a class='color-default pointer' title="Name" data-bind="click:function () { entitiesPaginator.orderBy('Name') }">Name<i class="fa fa-sort-alpha-asc pad-left1"></i></a></th>
+                                <th><a class='color-default pointer' title="Author" data-bind="click:function () { entitiesPaginator.orderBy('Author') }">Author<i class="fa fa-sort-alpha-asc pad-left1"></i></a></th>
+                                <th><a class='color-default pointer' title="Duration in minutes" data-bind="click:function () { entitiesPaginator.orderBy('DurationMin') }">Duration in minutes<i class="fa fa-sort-numeric-asc pad-left1"></i></a></th>
+                                <th><a class='color-default pointer' title="Music genre" data-bind="click:function () { entitiesPaginator.orderBy('MusicGenre.Name') }">Music genre<i class="fa fa-sort-alpha-asc pad-left1"></i></a></th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: entitiesPaginator.entities">
+                            <tr>
+                                <td data-bind="text: Name"></td>
+                                <td data-bind="text: Author"></td>
+                                <td data-bind="text: DurationMin"></td>
+                                <td data-bind="text: MusicGenre.Name"></td>
+                                <td><a class='btn btn-info btn-large' title="Adauga in playlist" data-bind="click:$parent.artisticEventOrder.addToPlaylist">Adauga in playlist</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    @{ Html.RenderPartial("~/Views/Partials/_GridNavigationControls.cshtml"); }
+
+                </div>
             </div>
         </div>
-        <div>
-            <span>Locatia evenimentului:</span>
-            <input data-bind="value:artisticEventOrder.EventLocation" />
-        </div>
-        <div>
-            <span>Optional, alege melodii pentru playlist</span>
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th><a class='btn btn-info' title="Name" data-bind="click:function () { entitiesPaginator.orderBy('Name') }">Name</a></th>
-                        <th><a class='btn btn-info' title="Author" data-bind="click:function () { entitiesPaginator.orderBy('Author') }">Author</a></th>
-                        <th><a class='btn btn-info' title="Duration in minutes" data-bind="click:function () { entitiesPaginator.orderBy('DurationMin') }">Duration in minutes</a></th>
-                        <th><a class='btn btn-info' title="Music genre" data-bind="click:function () { entitiesPaginator.orderBy('MusicGenre.Name') }">Music genre</a></th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: entitiesPaginator.entities">
-                    <tr>
-                        <td data-bind="text: Name"></td>
-                        <td data-bind="text: Author"></td>
-                        <td data-bind="text: DurationMin"></td>
-                        <td data-bind="text: MusicGenre.Name"></td>
-                        <td><a class='btn btn-info btn-large' title="Adauga in playlist" data-bind="click:$parent.artisticEventOrder.addToPlaylist">Adauga in playlist</a></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="tab-pane" id="3">
 
-            @{ Html.RenderPartial("~/Views/Partials/_GridNavigationControls.cshtml"); }
+            <div class="mrg-down4 mrg-top4">
+                @{ Html.RenderPartial("~/Views/Partials/_EventOrderDetails.cshtml"); }
+            </div>
 
+
+            <a class="btn btn-success btn-lg btn-block mrg-top6" data-bind="enable:isValid(), click:orderEvent"><i class="fa fa-phone"></i> Comandă!</a>
         </div>
     </div>
-
 </div>

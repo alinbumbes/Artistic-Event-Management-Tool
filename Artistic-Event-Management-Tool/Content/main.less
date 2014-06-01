@@ -12,7 +12,18 @@
     padding: 10px;
 }*/
 
+.table-noborders.table > thead > tr > th, .table-noborders.table > tbody > tr > th, .table-noborders.table > tfoot > tr > th, .table-noborders.table > thead > tr > td, .table-noborders.table > tbody > tr > td, .table-noborders.table > tfoot > tr > td {
+    padding: 5px 8px;
+    border-top: 0px solid #dddddd;
+}
 
+.color-default {
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
 
 @import '_positioning.less';
-
