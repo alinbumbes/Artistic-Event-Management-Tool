@@ -17,6 +17,7 @@
                 <th><a class='btn btn-info' title="Start hour" data-bind="click:function () { entitiesPaginator.orderBy('EventStartHour') }">Start hour</a></th>
                 <th><a class='btn btn-info' title="End hour" data-bind="click:function () { entitiesPaginator.orderBy('EventEndHour') }">End hour</a></th>
                 <th><a class='btn btn-info' title="Location" data-bind="click:function () { entitiesPaginator.orderBy('EventLocation') }">Location</a></th>
+                <th><a class='btn btn-info' title="Location" data-bind="click:function () { entitiesPaginator.orderBy('Requester.UserName') }">User name</a></th>
                 <th><a class='btn btn-info' title="Was performed" data-bind="click:function () { entitiesPaginator.orderBy('WasPerformed') }">Was performed</a></th>
                 <th>Actions</th>
             </tr>
@@ -29,6 +30,7 @@
                 <td data-bind="text: EventStartHour"></td>
                 <td data-bind="text: EventEndHour"></td>
                 <td data-bind="text: EventLocation"></td>
+                <td data-bind="text: Requester.UserName"></td>
                 <td data-bind="text: WasPerformed"></td>
                 <td><a class='btn btn-info btn-large' title="Show playlist" data-bind="click:$parent.entitiesPaginator.edit">Show playlist (<span data-bind="text:SelectedPlaylistSongs.length"></span>)</a></td>
                 <td><button class='btn btn-info btn-large' title="Mark as performed" data-bind="disable:WasPerformed,click:$parent.markEventPerformed">Mark as performed!</button></td>

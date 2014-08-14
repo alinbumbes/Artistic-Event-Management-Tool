@@ -105,17 +105,28 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult OrderEvent(string eventOrderDataStringified)
+        public JsonResult OrderEvent(string eventOrderDataStringified, LoginContext loginContext)
         {
-           var saveSuccessfull =  base.SaveOrOpdate("ArtisticEventOrder", eventOrderDataStringified);
+           var objSaved =  base.SaveOrOpdate("ArtisticEventOrder", eventOrderDataStringified);
 
-            if (saveSuccessfull)
-            {
-                return Json(true);
-            }
-            else
+           if (objSaved == null)
             {
                 return Json(false);
+                
+            }
+            else
+           {
+               var artEventOrder = (ArtisticEventOrder)objSaved;
+               artEventOrder.Requester
+                   = Session.Query<User>().SingleOrDefault(x => x.UserName == loginContext.UserName);
+
+               using (var tx = Session.BeginTransaction())
+               {
+                   Session.SaveOrUpdate(artEventOrder);
+                   tx.Commit();
+               }
+
+               return Json(true);
             }
             
         }

@@ -85,7 +85,7 @@ namespace Web.Controllers
         
         public new JsonResult SaveOrOpdate(string type, string objectStringified, string whereClause = null, string whereParamsCommaSeparated = null, string selectClause = null, string orderByClause = null, int? takeClause = null, int? skipClause = null)
         {
-            if (!base.SaveOrOpdate(type, objectStringified))
+            if (base.SaveOrOpdate(type, objectStringified) == null)
             {
                 throw new Exception(string.Format("Save or update failed for type: {0} and object stringified:{1}", type, objectStringified));
             }

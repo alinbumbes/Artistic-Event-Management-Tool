@@ -91,7 +91,7 @@ namespace Web.Controllers
             return result;
         }
 
-        protected bool SaveOrOpdate(string type, string objectStringified)
+        protected object SaveOrOpdate(string type, string objectStringified)
         {
             if (string.IsNullOrEmpty(type)
                 || string.IsNullOrEmpty(objectStringified))
@@ -108,7 +108,7 @@ namespace Web.Controllers
             var objectSentFromClient = JsonConvert.DeserializeObject(objectStringified, AllCoreClasses.NameTypeMap[type]);
             if (objectSentFromClient == null)
             {
-                return false;
+                return null;
             }
 
 
@@ -116,7 +116,7 @@ namespace Web.Controllers
             var validationResult = validatorForType.Validate(objectSentFromClient);
             if (!validationResult.IsValid)
             {
-                return false;
+                return null;
             }
 
             using (var tx = Session.BeginTransaction())
@@ -124,7 +124,7 @@ namespace Web.Controllers
                 Session.SaveOrUpdate(type, objectSentFromClient);
                 tx.Commit();
             }
-            return true;
+            return objectSentFromClient;
             
         }
 
