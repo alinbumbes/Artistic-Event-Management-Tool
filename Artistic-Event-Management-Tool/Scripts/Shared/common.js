@@ -43,10 +43,10 @@ common.ArtisticEventOrder = function () {
     self.Id = ko.observable();
     self.EventType = ko.observable().extend({ required: true });
     self.EventDate = ko.observable().extend({ required: true });
-    self.EventDateString = ko.observable();
+    self.EventDateString = ko.observable().extend({ required: true });
     self.EventStartHour = ko.observable().extend({ required: true });
-    self.EventEndHour = ko.observable();
-    self.EventLocation = ko.observable();
+    self.EventEndHour = ko.observable().extend({ required: true });
+    self.EventLocation = ko.observable().extend({ required: true });
     
     self.SelectedPlaylistSongs = ko.observableArray();
 
@@ -71,7 +71,7 @@ common.ArtisticEventOrder = function () {
 
             if (selectedDifference < self.EventType().MinimumDurationInHours) {
                 toastr.error("Durata evenimentului " + self.EventType().Name + " trebuie sa fie de minim " + self.EventType().MinimumDurationInHours + " ore");
-                selectedDifference = self.EventType().MinimumDurationInHours;
+                
             }
             
             return selectedDifference;
@@ -128,8 +128,34 @@ common.ArtisticEventOrder = function () {
         });
         
     };
-    
 
-   
+
+    self.isValidCustom = function () {
+        if (!self.EventType()) {
+            return false;
+        }
+
+        if (self.ComputedDuration() < self.EventType().MinimumDurationInHours) {
+            return false;
+        }
+        
+        if (!self.EventDate()) {
+            return false;
+        }
+        
+        if (!self.EventStartHour()) {
+            return false;
+        }
+        
+        if (!self.EventEndHour()) {
+            return false;
+        }
+        
+        if (!self.EventLocation()) {
+            return false;
+        }
+
+        return true;
+    };
 
 };
