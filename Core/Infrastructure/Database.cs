@@ -73,9 +73,7 @@ namespace Core.Infrastructure
                         IsAdmin = true
                     };
 
-                    var validator = new UserValidator();
-                    ValidationResult results = validator.Validate(adminUser);
-                    var xx = results.IsValid;
+                   
                     session.Save(adminUser);
 
                     var user = new User
@@ -157,31 +155,27 @@ namespace Core.Infrastructure
                         MinimumDurationInHours = 1
                     };
                     session.Save(eventConcertLive);
-
-
-                    for (int i = 1; i < 100; i++)
-                    {
+                    
                         //SONGS
                         var songMariesiMarioara = new Song();
-                        songMariesiMarioara.Name = "Marie si Marioara" + i;
+                        songMariesiMarioara.Name = "Marie si Marioara";
                         songMariesiMarioara.DurationMin = 2;
                         songMariesiMarioara.MusicGenre = sarba;
                         session.Save(songMariesiMarioara);
 
                         var ceSeAude = new Song();
-                        ceSeAude.Name = "Ce se-aude mai neicuta" + i;
+                        ceSeAude.Name = "Ce se-aude mai neicuta";
                         ceSeAude.DurationMin = 2.7;
                         ceSeAude.MusicGenre = sarba;
                         session.Save(ceSeAude);
 
                         var haiHaiCuTrasioara = new Song();
-                        haiHaiCuTrasioara.Name = "Hai hai cu trasioara" + i;
+                        haiHaiCuTrasioara.Name = "Hai hai cu trasioara";
                         haiHaiCuTrasioara.DurationMin = 2.3;
                         haiHaiCuTrasioara.MusicGenre = hora;
                         haiHaiCuTrasioara.Author = "Liviu Vasilica";
                         session.Save(haiHaiCuTrasioara);
 
-                    }
                     tx.Commit();
                 }
             }

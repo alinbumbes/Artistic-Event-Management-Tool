@@ -47,6 +47,14 @@ namespace Web.Controllers
             return View();
         }
 
+        public ActionResult Users(LoginContext loginContext)
+        {
+            ViewBag.UserName = loginContext.UserName;
+            ViewBag.IsAdmin = loginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
+            return View();
+        }
+
 
         public ActionResult ArtisticEventOrders(LoginContext loginContext)
         {

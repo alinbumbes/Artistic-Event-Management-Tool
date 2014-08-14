@@ -1,5 +1,12 @@
 ﻿var common = {};
 
+common.User = function () {
+    var self = this;
+    //observables
+    self.Id = ko.observable();
+    self.UserName = ko.observable().extend({ required: true });
+};
+
 common.Song = function () {
     var self = this;
     //observables

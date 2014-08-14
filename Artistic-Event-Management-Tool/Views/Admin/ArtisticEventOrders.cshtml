@@ -7,6 +7,7 @@
 
 <div class="container">
     <div>Artistic event orders</div>
+
     <table class="table">
         <thead>
             <tr>
@@ -35,16 +36,16 @@
         </tbody>
     </table>
 
-    @{ Html.RenderPartial("~/Views/Partials/_GridNavigationControls.cshtml"); }
 
+    @{ Html.RenderPartial("~/Views/Partials/_GridNavigationControls.cshtml"); }
 </div>
 
 <div id="artisticEventOrderDetailsPanel" title="Artistic event order details panel">
-    
+
     <div data-bind="visible:entitiesPaginator.selectedEntity.SelectedPlaylistSongs().length==0">
         <b>No playlist songs were selected.</b>
     </div>
-    
+
     <div data-bind="visible:entitiesPaginator.selectedEntity.SelectedPlaylistSongs().length>0">
         <b>Selected playlist songs:</b>
 

@@ -148,6 +148,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\Admin\usersViewModel.js" />
     <Content Include="Scripts\Dependencies\bootstrap.min.js" />
     <Content Include="Content\bootstrap3\less\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
@@ -338,6 +339,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\RegisterPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Users.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
