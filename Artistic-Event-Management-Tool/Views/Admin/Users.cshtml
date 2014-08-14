@@ -12,13 +12,17 @@
         <thead>
             <tr>
                 <th><a class='btn btn-info' title="UserName" data-bind="click:function () { entitiesPaginator.orderBy('UserName') }">User name</a></th>
+                <th><a class='btn btn-info' title="Contact" data-bind="click:function () { entitiesPaginator.orderBy('Contact') }">Contact</a></th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: entitiesPaginator.entities">
             <tr>
                 <td data-bind="text: UserName"></td>
-                <td><a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.entitiesPaginator.delete">Delete</a></td>
+                <td data-bind="text: Contact"></td>
+                <td>
+                    <a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.entitiesPaginator.delete">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>

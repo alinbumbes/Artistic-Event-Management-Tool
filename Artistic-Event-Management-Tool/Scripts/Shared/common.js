@@ -17,8 +17,7 @@ common.Song = function () {
         required: true,
         min: 0
     });
-    self.MusicGenre = ko.observable().extend({ required: true });
-
+    
     //computed
 
     //methods
@@ -31,7 +30,6 @@ common.Song = function () {
         self.Name(model.Name || null);
         self.Author(model.Author || null);
         self.DurationMin(model.DurationMin || null);
-        self.MusicGenre(model.MusicGenre || null);
 
     };
 

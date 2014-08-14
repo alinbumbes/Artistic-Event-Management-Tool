@@ -191,7 +191,6 @@
     <Content Include="Scripts\Home\loginViewModel.js" />
     <Content Include="Scripts\Shared\common.js" />
     <Content Include="Scripts\Shared\constants.js" />
-    <Content Include="Scripts\Admin\musicGenresViewModel.js" />
     <Content Include="Scripts\Admin\songsViewModel.js" />
     <Content Include="Scripts\Admin\eventTypesViewModel.js" />
     <Content Include="Scripts\Dependencies\jquery-ui.js" />
@@ -253,9 +252,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\EventTypes.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Admin\MusicGenres.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Songs.cshtml" />

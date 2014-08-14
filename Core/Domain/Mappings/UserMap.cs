@@ -16,7 +16,9 @@ namespace Core.Domain.Mappings
             Map(x => x.IsAdmin).Not.Nullable();
             Map(x => x.UserName).Not.Nullable();
             Map(x => x.Password).Not.Nullable();
-           
+            Map(x => x.Contact).Not.Nullable();
+            
+
         }
     }
 }

@@ -69,68 +69,24 @@ namespace Core.Infrastructure
                     var adminUser = new User
                     {
                         UserName = "admin",
+                        Contact = "admin@admin.com",
                         Password = Cryptography.GetHash("admin"),
                         IsAdmin = true
                     };
 
-                   
+
                     session.Save(adminUser);
 
                     var user = new User
                     {
                         UserName = "user",
+                        Contact = "0745634231",
                         Password = Cryptography.GetHash("user"),
                         IsAdmin = false
                     };
                     session.Save(user);
 
-                    //MUSIC GENRES
-                    var sarba = new MusicGenre()
-                    {
-                        Name = "Sarba",
-                        Description = "Muzica populara romaneasca"
-                    };
-                    session.Save(sarba);
 
-                    var hora = new MusicGenre()
-                    {
-                        Name = "Hora",
-                        Description = "Muzica populara romaneasca de joc"
-                    };
-                    session.Save(hora);
-
-                    var doina = new MusicGenre()
-                    {
-                        Name = "Doina",
-                        Description = "Muzica populara romaneasca de jale"
-                    };
-                    session.Save(doina);
-                   
-                    var blues = new MusicGenre()
-                    {
-                        Name = "Blues",
-                        Description = "Muzica usoara lenta"
-                    };
-                    session.Save(blues);
-
-                    var rockAndRoll = new MusicGenre()
-                    {
-                        Name = "Rock and roll",
-                        Description = "Muzica usoara foaret ritmata"
-                    };
-                    session.Save(rockAndRoll);
-
-                    var pop = new MusicGenre()
-                    {
-                        Name = "Pop"
-                    };
-                    session.Save(pop);
-
-                    var hiphop = new MusicGenre()
-                    {
-                        Name = "Hip hop"
-                    };
-                    session.Save(hiphop);
 
 
                     //EVENT TYPES
@@ -155,26 +111,23 @@ namespace Core.Infrastructure
                         MinimumDurationInHours = 1
                     };
                     session.Save(eventConcertLive);
-                    
-                        //SONGS
-                        var songMariesiMarioara = new Song();
-                        songMariesiMarioara.Name = "Marie si Marioara";
-                        songMariesiMarioara.DurationMin = 2;
-                        songMariesiMarioara.MusicGenre = sarba;
-                        session.Save(songMariesiMarioara);
 
-                        var ceSeAude = new Song();
-                        ceSeAude.Name = "Ce se-aude mai neicuta";
-                        ceSeAude.DurationMin = 2.7;
-                        ceSeAude.MusicGenre = sarba;
-                        session.Save(ceSeAude);
+                    //SONGS
+                    var songMariesiMarioara = new Song();
+                    songMariesiMarioara.Name = "Marie si Marioara";
+                    songMariesiMarioara.DurationMin = 2;
+                    session.Save(songMariesiMarioara);
 
-                        var haiHaiCuTrasioara = new Song();
-                        haiHaiCuTrasioara.Name = "Hai hai cu trasioara";
-                        haiHaiCuTrasioara.DurationMin = 2.3;
-                        haiHaiCuTrasioara.MusicGenre = hora;
-                        haiHaiCuTrasioara.Author = "Liviu Vasilica";
-                        session.Save(haiHaiCuTrasioara);
+                    var ceSeAude = new Song();
+                    ceSeAude.Name = "Ce se-aude mai neicuta";
+                    ceSeAude.DurationMin = 2.7;
+                    session.Save(ceSeAude);
+
+                    var haiHaiCuTrasioara = new Song();
+                    haiHaiCuTrasioara.Name = "Hai hai cu trasioara";
+                    haiHaiCuTrasioara.DurationMin = 2.3;
+                    haiHaiCuTrasioara.Author = "Liviu Vasilica";
+                    session.Save(haiHaiCuTrasioara);
 
                     tx.Commit();
                 }

@@ -33,7 +33,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(string userName, string password, LoginContext loginContext)
+        public ActionResult Register(string userName, string contact, string password, LoginContext loginContext)
         {
 
             var existingUser = Session.Query<User>().SingleOrDefault(x => x.UserName == userName);
@@ -45,6 +45,7 @@ namespace Web.Controllers
             
             var newUser = new User();
             newUser.UserName = userName;
+            newUser.Contact = contact;
             newUser.Password = Cryptography.GetHash(password);
 
             using (var tx = Session.BeginTransaction())

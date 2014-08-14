@@ -16,7 +16,6 @@
                 <th title="Name">Name</th>
                 <th title="Author">Author</th>
                 <th title="Duration in minutes">Duration in minutes</th>
-                <th title="Music genre">Music genre</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,7 +24,6 @@
                 <td data-bind="text: Name"></td>
                 <td data-bind="text: Author"></td>
                 <td data-bind="text: DurationMin"></td>
-                <td data-bind="text: MusicGenre.Name"></td>
                 <td><a class='btn btn-danger' title="Sterge din playlist" data-bind="click:$parent.artisticEventOrder.removeFromPlaylist"><i class="fa fa-trash-o"></i></a></td>
             </tr>
         </tbody>

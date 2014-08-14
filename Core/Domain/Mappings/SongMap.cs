@@ -14,9 +14,7 @@ namespace Core.Domain.Mappings
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name).Not.Nullable();
             Map(x => x.Author);
-            Map(x => x.DurationMin).Not.Nullable(); ;
-
-            References(x => x.MusicGenre);
+            Map(x => x.DurationMin).Not.Nullable(); 
         }
     }
 }

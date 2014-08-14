@@ -32,8 +32,11 @@
                 <td data-bind="text: EventLocation"></td>
                 <td data-bind="text: Requester.UserName"></td>
                 <td data-bind="text: WasPerformed"></td>
-                <td><a class='btn btn-info btn-large' title="Show playlist" data-bind="click:$parent.entitiesPaginator.edit">Show playlist (<span data-bind="text:SelectedPlaylistSongs.length"></span>)</a></td>
-                <td><button class='btn btn-info btn-large' title="Mark as performed" data-bind="disable:WasPerformed,click:$parent.markEventPerformed">Mark as performed!</button></td>
+                <td>
+                    <a class='btn btn-info btn-large' title="Show playlist" data-bind="click:$parent.entitiesPaginator.edit">Show playlist (<span data-bind="text:SelectedPlaylistSongs.length"></span>)</a>
+                    <button class='btn btn-info btn-large' title="Mark as performed" data-bind="disable:WasPerformed,click:$parent.markEventPerformed">Mark as performed!</button>
+                    <a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.entitiesPaginator.delete">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -57,7 +60,6 @@
                     <th>Name</th>
                     <th>Author</th>
                     <th>Duration in minutes</th>
-                    <th>Music genre</th>
                 </tr>
             </thead>
             <tbody data-bind="foreach: entitiesPaginator.selectedEntity.SelectedPlaylistSongs">
@@ -65,7 +67,6 @@
                     <td data-bind="text: Name"></td>
                     <td data-bind="text: Author"></td>
                     <td data-bind="text: DurationMin"></td>
-                    <td data-bind="text: MusicGenre.Name"></td>
                 </tr>
             </tbody>
         </table>

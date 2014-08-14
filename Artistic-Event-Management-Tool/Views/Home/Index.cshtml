@@ -101,7 +101,6 @@
                                 <th><a class='color-default pointer' title="Name" data-bind="click:function () { entitiesPaginator.orderBy('Name') }">Name<i class="fa fa-sort-alpha-asc pad-left1"></i></a></th>
                                 <th><a class='color-default pointer' title="Author" data-bind="click:function () { entitiesPaginator.orderBy('Author') }">Author<i class="fa fa-sort-alpha-asc pad-left1"></i></a></th>
                                 <th><a class='color-default pointer' title="Duration in minutes" data-bind="click:function () { entitiesPaginator.orderBy('DurationMin') }">Duration in minutes<i class="fa fa-sort-numeric-asc pad-left1"></i></a></th>
-                                <th><a class='color-default pointer' title="Music genre" data-bind="click:function () { entitiesPaginator.orderBy('MusicGenre.Name') }">Music genre<i class="fa fa-sort-alpha-asc pad-left1"></i></a></th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -110,7 +109,6 @@
                                 <td data-bind="text: Name"></td>
                                 <td data-bind="text: Author"></td>
                                 <td data-bind="text: DurationMin"></td>
-                                <td data-bind="text: MusicGenre.Name"></td>
                                 <td><a class='btn btn-info btn-large' title="Adauga in playlist" data-bind="click:$parent.artisticEventOrder.addToPlaylist">Adauga in playlist</a></td>
                             </tr>
                         </tbody>

@@ -16,7 +16,6 @@
                 <th><a class='btn btn-info' title="Name" data-bind="click:function () { entitiesPaginator.orderBy('Name') }">Name</a></th>
                 <th><a class='btn btn-info' title="Author" data-bind="click:function () { entitiesPaginator.orderBy('Author') }">Author</a></th>
                 <th><a class='btn btn-info' title="Duration in minutes" data-bind="click:function () { entitiesPaginator.orderBy('DurationMin') }">Duration in minutes</a></th>
-                <th><a class='btn btn-info' title="Music genre" data-bind="click:function () { entitiesPaginator.orderBy('MusicGenre.Name') }">Music genre</a></th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,9 +24,10 @@
                 <td data-bind="text: Name"></td>
                 <td data-bind="text: Author"></td>
                 <td data-bind="text: DurationMin"></td>
-                <td data-bind="text: MusicGenre.Name"></td>
-                <td><a class='btn btn-info btn-large' title="Edit" data-bind="click:$parent.entitiesPaginator.edit">Edit</a></td>
-                <td><a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.entitiesPaginator.delete">Delete</a></td>
+                <td>
+                    <a class='btn btn-info btn-large' title="Edit" data-bind="click:$parent.entitiesPaginator.edit">Edit</a>
+                    <a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.entitiesPaginator.delete">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -43,9 +43,4 @@
     <input data-bind="value:entitiesPaginator.selectedEntity.Author" />
     <label>Duration in minutes</label>
     <input data-bind="value:entitiesPaginator.selectedEntity.DurationMin" />
-    <label>MusicGenre</label>
-    <select data-bind="options: musicGenres,
-                       optionsText: 'Name',
-                       value: entitiesPaginator.selectedEntity.MusicGenre,
-                       optionsCaption: 'Choose music genre...' "></select>
 </div>

@@ -60,16 +60,13 @@
     <Compile Include="Domain\EventType.cs" />
     <Compile Include="Domain\Mappings\ArtisticEventOrderMap.cs" />
     <Compile Include="Domain\Mappings\EventTypeMap.cs" />
-    <Compile Include="Domain\Mappings\MusicGenreMap.cs" />
     <Compile Include="Domain\Mappings\SongMap.cs" />
     <Compile Include="Domain\Mappings\UserMap.cs" />
-    <Compile Include="Domain\MusicGenre.cs" />
     <Compile Include="Domain\Song.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\Validation\DefaultValidator.cs" />
     <Compile Include="Domain\Validation\ArtisticEventOrderValidator.cs" />
     <Compile Include="Domain\Validation\EventTypeValidator.cs" />
-    <Compile Include="Domain\Validation\MusicGenreValidator.cs" />
     <Compile Include="Domain\Validation\SongValidator.cs" />
     <Compile Include="Domain\Validation\UserValidator.cs" />
     <Compile Include="Domain\Validation\ValidatorFactory.cs" />

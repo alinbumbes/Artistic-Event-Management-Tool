@@ -10,6 +10,7 @@ Home.RegisterViewModel = function () {
     
     //observables
     self.userName = ko.observable();
+    self.contact = ko.observable();
     self.password = ko.observable();
     self.passwordConfirm = ko.observable();
     self.passwordsDoNotMatch = ko.observable(false);
@@ -29,7 +30,8 @@ Home.RegisterViewModel = function () {
     self.canRegister = function () {
         if (self.userName() && self.userName().length > 0
             && self.password() && self.password().length > 0
-            && self.passwordConfirm() && self.passwordConfirm().length > 0) {
+            && self.passwordConfirm() && self.passwordConfirm().length > 0
+            && self.contact() && self.contact().length > 0) {
             return true;
         } else {
             return false;

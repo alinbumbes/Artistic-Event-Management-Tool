@@ -12,8 +12,7 @@ namespace Core.Domain
         public virtual string Name { get; set; }
         public virtual string Author { get; set; }
         public virtual double DurationMin { get; set; }
-        public virtual MusicGenre MusicGenre { get; set; }
-
+        
         public Song()
         {}
 
@@ -23,12 +22,11 @@ namespace Core.Domain
             Author = author;
         }
 
-        public Song(string name, string author, double durationMin, MusicGenre musicGenre)
+        public Song(string name, string author, double durationMin)
         {
             Name = name;
             Author = author;
             DurationMin = durationMin;
-            MusicGenre = musicGenre;
         }
     }
 }

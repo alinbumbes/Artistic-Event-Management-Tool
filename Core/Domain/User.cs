@@ -12,6 +12,7 @@ namespace Core.Domain
         public virtual bool IsAdmin { get; set; }
         public virtual string UserName { get; set; }
         public virtual string Password { get; set; }
+        public virtual string Contact { get; set; }
 
     }
     

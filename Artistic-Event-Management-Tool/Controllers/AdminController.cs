@@ -30,14 +30,7 @@ namespace Web.Controllers
             ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
             return View();
         }
-
-        public ActionResult MusicGenres(LoginContext loginContext)
-        {
-            ViewBag.UserName = loginContext.UserName;
-            ViewBag.IsAdmin = loginContext.IsAdmin;
-            ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
-            return View();
-        }
+       
 
         public ActionResult Songs(LoginContext loginContext)
         {

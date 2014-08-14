@@ -23,8 +23,10 @@
                 <td data-bind="text: Name"></td>
                 <td data-bind="text: PricePerHour"></td>
                 <td data-bind="text: MinimumDurationInHours"></td>
-                <td><a class='btn btn-info btn-large' title="Edit" data-bind="click:$parent.entitiesPaginator.edit">Edit</a></td>
-                <td><a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.entitiesPaginator.delete">Delete</a></td>
+                <td>
+                    <a class='btn btn-info btn-large' title="Edit" data-bind="click:$parent.entitiesPaginator.edit">Edit</a>
+                    <a class='btn btn-info btn-large' title="Delete" data-bind="click:$parent.entitiesPaginator.delete">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>

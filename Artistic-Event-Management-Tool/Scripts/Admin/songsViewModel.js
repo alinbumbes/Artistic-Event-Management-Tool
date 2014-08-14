@@ -20,9 +20,7 @@ Admin.SongsViewModel = function () {
 
 
     //observables
-    self.musicGenres = ko.observable();
-
-
+   
     //methods
     self.saveOrUpdate = function () {
         if (!self.isValid()) {
@@ -34,8 +32,7 @@ Admin.SongsViewModel = function () {
             Id: self.entitiesPaginator.selectedEntity.Id(),
             Name: self.entitiesPaginator.selectedEntity.Name(),
             Author: self.entitiesPaginator.selectedEntity.Author(),
-            DurationMin: self.entitiesPaginator.selectedEntity.DurationMin(),
-            MusicGenre: self.entitiesPaginator.selectedEntity.MusicGenre()
+            DurationMin: self.entitiesPaginator.selectedEntity.DurationMin()
         });
 
         self.entitiesPaginator.saveOrUpdate(entityStringified);
@@ -50,25 +47,5 @@ Admin.SongsViewModel = function () {
     ko.applyBindings(ko.validatedObservable(vm));
 
     vm.entitiesPaginator.currentPage(1);
-
-    server.getDataWithoutStringify(appConfig.adminGetAllEntitiesOfTypesUrl,
-    {
-        entityTypesComaSeparated: "MusicGenre",
-        orderByClausesComaSeparated: "Name"
-    })
-    .done(function (response) {
-        vm.musicGenres(response[0]);
-    })
-    .fail(function (message) {
-
-        var errorText = AppConstants.FAILED_MESSAGE;
-        if (message) {
-            errorText += message;
-        }
-
-        toastr.error(errorText);
-    });
-
-
 })();
 
