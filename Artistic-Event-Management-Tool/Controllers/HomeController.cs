@@ -14,30 +14,32 @@ namespace Web.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(ISession session, ValidatorFactory validatorFactory, LoginContext loginContext)
-            : base(session, validatorFactory, loginContext)
+        public HomeController(ISession session, ValidatorFactory validatorFactory)
+            : base(session, validatorFactory)
         { }
 
-        public ActionResult LoginPage()
+        public ActionResult LoginPage(LoginContext loginContext)
         {
-            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
+            ViewBag.UserName = loginContext.UserName;
+            ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
             return View();
         }
 
-        public ActionResult RegisterPage()
+        public ActionResult RegisterPage(LoginContext loginContext)
         {
-            ViewBag.UsernameAlreadyExists = LoginContext.UsernameAlreadyExists;
+            ViewBag.UserName = loginContext.UserName;
+            ViewBag.UsernameAlreadyExists = loginContext.UsernameAlreadyExists;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Register(string userName, string password)
+        public ActionResult Register(string userName, string password, LoginContext loginContext)
         {
 
             var existingUser = Session.Query<User>().SingleOrDefault(x => x.UserName == userName);
             if (existingUser != null)
             {
-                LoginContext.UsernameAlreadyExists = true;
+                loginContext.UsernameAlreadyExists = true;
                 return RedirectToAction("RegisterPage");
             }
             
@@ -51,28 +53,28 @@ namespace Web.Controllers
                 tx.Commit();
             }
 
-            LoginContext.UserName = newUser.UserName;
-            LoginContext.IsAdmin = newUser.IsAdmin;
-            LoginContext.LoginSuccessfull = true;
+            loginContext.UserName = newUser.UserName;
+            loginContext.IsAdmin = newUser.IsAdmin;
+            loginContext.LoginSuccessfull = true;
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public ActionResult Login(string userName, string password)
+        public ActionResult Login(string userName, string password, LoginContext loginContext)
         {
             var user = Session.Query<User>().SingleOrDefault(x => x.UserName == userName);
             if (user != null)
             {
                 if(Cryptography.Verify(password,user.Password))
                 {
-                    LoginContext.UserName = user.UserName;
-                    LoginContext.IsAdmin = user.IsAdmin;
-                    LoginContext.LoginSuccessfull = true;
+                    loginContext.UserName = user.UserName;
+                    loginContext.IsAdmin = user.IsAdmin;
+                    loginContext.LoginSuccessfull = true;
                     return RedirectToAction("Index");
                 }
             }
 
-            LoginContext.LoginSuccessfull = false;
+            loginContext.LoginSuccessfull = false;
             return RedirectToAction("LoginPage");
             
         }
@@ -80,26 +82,25 @@ namespace Web.Controllers
 
         public ActionResult LogOut()
         {
-            LoginContext.UserName = null;
-            LoginContext.IsAdmin = false;
-            LoginContext.LoginSuccessfull = null;
-            
+           
+            ((Controller)this).Session.Remove(Constants.UserContextKey);            
+
             return RedirectToAction("LoginPage");
         }
-        
-        public ActionResult Index()
+
+        public ActionResult Index(LoginContext loginContext)
         {
-            ViewBag.UserName = LoginContext.UserName;
-            ViewBag.IsAdmin = LoginContext.IsAdmin;
-            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
+            ViewBag.UserName = loginContext.UserName;
+            ViewBag.IsAdmin = loginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult About(LoginContext loginContext)
         {
-            ViewBag.UserName = LoginContext.UserName;
-            ViewBag.IsAdmin = LoginContext.IsAdmin;
-            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
+            ViewBag.UserName = loginContext.UserName;
+            ViewBag.IsAdmin = loginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
             return View();
         }
 

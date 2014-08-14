@@ -22,13 +22,12 @@ namespace Web.Controllers
     {
         protected readonly ISession Session;
         protected readonly ValidatorFactory ValidatorFactory;
-        protected readonly LoginContext LoginContext;
+        
 
-        public BaseController(ISession session, ValidatorFactory validatorFactory, LoginContext loginContext)
+        public BaseController(ISession session, ValidatorFactory validatorFactory)
         {
             this.Session = session;
             this.ValidatorFactory = validatorFactory;
-            this.LoginContext = loginContext;
         }
 
         protected List<List<object>> GetAllOfManyTypes(string entityTypesComaSeparated, string orderByClausesComaSeparated)

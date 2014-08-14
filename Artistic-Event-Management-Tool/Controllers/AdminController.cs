@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Core.Domain;
 using Core.Domain.Validation;
-using Microsoft.Ajax.Utilities;
 using NHibernate;
 using NHibernate.Linq;
 using Core.Infrastructure;
@@ -14,48 +11,48 @@ namespace Web.Controllers
 {
     public class AdminController : BaseController
     {
-        public AdminController(ISession session, ValidatorFactory validatorFactory, LoginContext loginContext)
-            : base(session, validatorFactory, loginContext)
+        public AdminController(ISession session, ValidatorFactory validatorFactory)
+            : base(session, validatorFactory)
         { }
 
-        public ActionResult Index()
+        public ActionResult Index(LoginContext loginContext)
         {
-            ViewBag.UserName = LoginContext.UserName;
-            ViewBag.IsAdmin = LoginContext.IsAdmin;
-            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
+            ViewBag.UserName = loginContext.UserName;
+            ViewBag.IsAdmin = loginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
             return View("ArtisticEventOrders");
         }
 
-        public ActionResult EventTypes()
+        public ActionResult EventTypes(LoginContext loginContext)
         {
-            ViewBag.UserName = LoginContext.UserName;
-            ViewBag.IsAdmin = LoginContext.IsAdmin;
-            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
+            ViewBag.UserName = loginContext.UserName;
+            ViewBag.IsAdmin = loginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
             return View();
         }
 
-        public ActionResult MusicGenres()
+        public ActionResult MusicGenres(LoginContext loginContext)
         {
-            ViewBag.UserName = LoginContext.UserName;
-            ViewBag.IsAdmin = LoginContext.IsAdmin;
-            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
+            ViewBag.UserName = loginContext.UserName;
+            ViewBag.IsAdmin = loginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
             return View();
         }
 
-        public ActionResult Songs()
+        public ActionResult Songs(LoginContext loginContext)
         {
-            ViewBag.UserName = LoginContext.UserName;
-            ViewBag.IsAdmin = LoginContext.IsAdmin;
-            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
+            ViewBag.UserName = loginContext.UserName;
+            ViewBag.IsAdmin = loginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
             return View();
         }
 
 
-        public ActionResult ArtisticEventOrders()
+        public ActionResult ArtisticEventOrders(LoginContext loginContext)
         {
-            ViewBag.UserName = LoginContext.UserName;
-            ViewBag.IsAdmin = LoginContext.IsAdmin;
-            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
+            ViewBag.UserName = loginContext.UserName;
+            ViewBag.IsAdmin = loginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = loginContext.LoginSuccessfull;
             return View();
         }
         

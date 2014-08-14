@@ -2,6 +2,7 @@
 using System.Web.Optimization;
 using System.Web.Routing;
 using Core.Infrastructure;
+using Web.App_Start;
 
 namespace Web
 {
@@ -18,7 +19,9 @@ namespace Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.Configure();
-           
+
+            ModelBinders.Binders.Add(typeof(LoginContext), new LoginContextBinder());
+            
         }
     }
 }
