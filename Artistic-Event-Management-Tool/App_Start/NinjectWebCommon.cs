@@ -63,6 +63,10 @@ namespace Web.App_Start
             
 
             kernel.Bind<ISession>().ToProvider(new SessionProvider()).InRequestScope();
+            kernel.Bind<LoginContext>().ToConstructor(x => new LoginContext()).InSingletonScope();
+
+            
+
         }
 
         public class SessionProvider : Provider<ISession>

@@ -13,10 +13,10 @@ namespace Core.Domain.Mappings
         public UserMap()
         {
             Id(x => x.Id).GeneratedBy.Increment();
-            Map(x => x.Name);
-            Map(x => x.Email).Not.Nullable();
+            Map(x => x.IsAdmin).Not.Nullable();
+            Map(x => x.UserName).Not.Nullable();
             Map(x => x.Password).Not.Nullable();
-            Map(x => x.Type).Not.Nullable();
+           
         }
     }
 }

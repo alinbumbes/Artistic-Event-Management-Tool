@@ -68,10 +68,9 @@ namespace Core.Infrastructure
                     //USERS
                     var adminUser = new User
                     {
-                        Name = "Alin Bumbes",
-                        Email = "admin@alin.com",
+                        UserName = "admin",
                         Password = Cryptography.GetHash("admin"),
-                        Type = UserType.Admin
+                        IsAdmin = true
                     };
 
                     var validator = new UserValidator();
@@ -81,10 +80,9 @@ namespace Core.Infrastructure
 
                     var user = new User
                     {
-                        Name = "Un user",
-                        Email = "user@alin.com",
+                        UserName = "user",
                         Password = Cryptography.GetHash("user"),
-                        Type = UserType.User
+                        IsAdmin = false
                     };
                     session.Save(user);
 

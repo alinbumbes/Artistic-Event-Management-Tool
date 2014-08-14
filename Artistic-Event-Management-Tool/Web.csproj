@@ -184,6 +184,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Admin\artisticEventOrdersViewModel.js" />
+    <Content Include="Scripts\Home\registerViewModel.js" />
+    <Content Include="Scripts\Home\loginViewModel.js" />
     <Content Include="Scripts\Shared\common.js" />
     <Content Include="Scripts\Shared\constants.js" />
     <Content Include="Scripts\Admin\musicGenresViewModel.js" />
@@ -325,6 +327,15 @@
     <Content Include="Content\_colors.less" />
     <Content Include="Content\_mixins.less" />
     <Content Include="Content\_positioning.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\LoginPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Partials\_NavigationBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\RegisterPage.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

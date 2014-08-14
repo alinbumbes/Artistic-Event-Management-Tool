@@ -2,6 +2,9 @@
 
 appConfig = {};
 
+//LOGIN SECTION
+appConfig.loginUrl = urlFormater("Home/Login");
+
 //HOME SECTION
 appConfig.homeOrderEventUrl = urlFormater("Home/OrderEvent");
 

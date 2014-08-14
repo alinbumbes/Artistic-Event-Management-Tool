@@ -8,38 +8,54 @@ using Core.Domain.Validation;
 using Microsoft.Ajax.Utilities;
 using NHibernate;
 using NHibernate.Linq;
+using Core.Infrastructure;
 
 namespace Web.Controllers
 {
     public class AdminController : BaseController
     {
-        public AdminController(ISession session, ValidatorFactory validatorFactory)
-            : base(session, validatorFactory)
+        public AdminController(ISession session, ValidatorFactory validatorFactory, LoginContext loginContext)
+            : base(session, validatorFactory, loginContext)
         { }
 
         public ActionResult Index()
         {
+            ViewBag.UserName = LoginContext.UserName;
+            ViewBag.IsAdmin = LoginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
             return View("ArtisticEventOrders");
         }
 
         public ActionResult EventTypes()
         {
+            ViewBag.UserName = LoginContext.UserName;
+            ViewBag.IsAdmin = LoginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
             return View();
         }
 
         public ActionResult MusicGenres()
         {
+            ViewBag.UserName = LoginContext.UserName;
+            ViewBag.IsAdmin = LoginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
             return View();
         }
 
         public ActionResult Songs()
         {
+            ViewBag.UserName = LoginContext.UserName;
+            ViewBag.IsAdmin = LoginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
             return View();
         }
 
 
         public ActionResult ArtisticEventOrders()
         {
+            ViewBag.UserName = LoginContext.UserName;
+            ViewBag.IsAdmin = LoginContext.IsAdmin;
+            ViewBag.LoginSuccessfull = LoginContext.LoginSuccessfull;
             return View();
         }
         

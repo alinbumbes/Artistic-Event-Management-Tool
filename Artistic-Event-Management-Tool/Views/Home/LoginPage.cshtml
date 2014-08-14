@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+@section scripts{
+    @Scripts.Render("~/Scripts/Home/loginViewModel.js")  
+}
+
+<form action="Home/Login" method="POST">
+    <div><span>User name:</span><input type="text" name="userName" data-bind="value: userName" /></div>
+    <div><span>Password:</span><input type="password" name="password" data-bind="value: password" /></div>
+    <div><button type="submit" data-bind="enable: canLogin()">Log in</button></div>
+
+    @if (ViewBag.LoginSuccessfull == false)
+    {
+        <span style="color: red">Wrong username or password!</span>
+    }
+
+    <li>@Html.ActionLink("Register", "RegisterPage", "Home")</li>
+</form>

@@ -12,27 +12,18 @@ namespace Core.Domain.Validation
     {
         public UserValidator()
         {
-            RuleFor(user => user.Name)
-                .NotNull()
-                .NotEmpty()
-                .Must(PasswordHasValidLength);
-
+          
             RuleFor(user => user.Password)
                 .NotNull()
                 .NotEmpty();
 
-            RuleFor(user => user.Email)
+            RuleFor(user => user.UserName)
                 .NotNull()
                 .NotEmpty();
 
             
         }
-
-        private bool PasswordHasValidLength(string password)
-        {
-            return password.Length
-                   >= int.Parse(ConfigurationManager.AppSettings["MinPasswordLength"]);
-        }
+       
 
     }
 }

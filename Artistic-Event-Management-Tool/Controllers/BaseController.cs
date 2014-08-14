@@ -13,6 +13,7 @@ using Data.QuerySystem;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using NHibernate;
+using Core.Infrastructure;
 
 
 namespace Web.Controllers
@@ -21,11 +22,13 @@ namespace Web.Controllers
     {
         protected readonly ISession Session;
         protected readonly ValidatorFactory ValidatorFactory;
+        protected readonly LoginContext LoginContext;
 
-        public BaseController(ISession session, ValidatorFactory validatorFactory)
+        public BaseController(ISession session, ValidatorFactory validatorFactory, LoginContext loginContext)
         {
             this.Session = session;
             this.ValidatorFactory = validatorFactory;
+            this.LoginContext = loginContext;
         }
 
         protected List<List<object>> GetAllOfManyTypes(string entityTypesComaSeparated, string orderByClausesComaSeparated)

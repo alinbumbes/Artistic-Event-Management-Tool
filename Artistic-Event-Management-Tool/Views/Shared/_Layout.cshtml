@@ -14,28 +14,9 @@
 </head>
 <body>
     <header>
-        @*@Html.ActionLink("Artistic Events Management System", "Index", "Home")*@
-        <div class="container">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
-
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <i class="fa fa-bars"></i> </button>
-                        <a class="navbar-brand pad-2 mrg-0" href="">
-                            <img src="~/Content/img/logo.png" alt="Artistic Event Management System" />
-                        </a>
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Comanda", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Administrare", "Index", "Admin")</li>
-                            <li>@Html.ActionLink("Despre", "About", "Home")</li>
-                        </ul>
-
-                    </div>
-                </div>
-            </nav>
+        @{ Html.RenderPartial("~/Views/Partials/_NavigationBar.cshtml"); }
+        <div class="row">
+            <h1 class="text-center text-danger mrg-top6 mrg-down6 pad-top6 pad-down6">Artistic Event Management Tool</h1>
         </div>
     </header>
 
