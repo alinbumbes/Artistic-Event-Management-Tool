@@ -25,7 +25,10 @@ namespace Core
                             _nameTypeMap = new Dictionary<string, Type>();
                             foreach (var t in Assembly.GetExecutingAssembly().GetTypes())
                             {
-                                _nameTypeMap.Add(t.Name, t);
+                                if (!_nameTypeMap.ContainsKey(t.Name))
+                                {
+                                    _nameTypeMap.Add(t.Name, t);
+                                }
                             }
                         }
                     }

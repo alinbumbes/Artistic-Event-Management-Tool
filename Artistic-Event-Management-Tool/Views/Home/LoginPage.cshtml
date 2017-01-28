@@ -2,18 +2,29 @@
     ViewBag.Title = "Login";
 }
 @section scripts{
-    @Scripts.Render("~/Scripts/Home/loginViewModel.js")  
+    @Scripts.Render("~/Scripts/Home/loginViewModel.js")
 }
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
 
-<form action="Home/Login" method="POST">
-    <div><span>User name:</span><input type="text" name="userName" data-bind="value: userName" /></div>
-    <div><span>Password:</span><input type="password" name="password" data-bind="value: password" /></div>
-    <div><button type="submit" data-bind="enable: canLogin()">Log in</button></div>
+            <div class="panel panel-primary">
+                <div class="panel-heading"><i class="fa fa-key"></i> Log in</div>
+                <div class="panel-body">
+                    <form action="Home/Login" method="POST">
+                        <div><span>User name:</span><input type="text" name="userName" data-bind="value: userName" class="form-control mrg-down2" /></div>
+                        <div><span>Password:</span><input type="password" name="password" data-bind="value: password" class="form-control mrg-down2" /></div>
+                        <button type="submit" data-bind="enable: canLogin()" class="btn btn-primary">Log in</button>
 
-    @if (ViewBag.LoginSuccessfull == false)
-    {
-        <span style="color: red">Wrong username or password!</span>
-    }
+                        @if (ViewBag.LoginSuccessfull == false)
+                        {
+                            <span style="color: red">Wrong username or password!</span>
+                        }
 
-    <li>@Html.ActionLink("Register", "RegisterPage", "Home")</li>
-</form>
+                        <div class="findME D-inline-block">@Html.ActionLink("Register", "RegisterPage", "Home")</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

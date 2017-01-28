@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -148,6 +149,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <Content Include="Scripts\Admin\usersViewModel.js" />
     <Content Include="Scripts\Dependencies\bootstrap.min.js" />
     <Content Include="Content\bootstrap3\less\bootstrap.css">
@@ -201,9 +205,12 @@
     <Content Include="Scripts\Home\homeViewModel.js" />
     <Content Include="Scripts\Shared\entitiesPaginator.js" />
     <Content Include="Scripts\Shared\crudAndFilter.js" />
+    <Content Include="Scripts\Shared\fixIt.js" />
     <Content Include="Scripts\Shared\server.js" />
     <Content Include="Scripts\_appConfig.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -341,6 +348,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Partials\_SelectedPlaylist.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
